@@ -17,11 +17,9 @@
 		D8342A7E246F3FF000CC19D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8342A7D246F3FF000CC19D7 /* Main.storyboard */; };
 		D8342A852472FFAD00CC19D7 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8342A832472FFAD00CC19D7 /* Interface.storyboard */; };
 		D8342A872472FFAD00CC19D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8342A862472FFAD00CC19D7 /* Assets.xcassets */; };
-		D8342A8E2472FFAE00CC19D7 /* Watch App Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D8342A8D2472FFAE00CC19D7 /* Watch App Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D8342A932472FFAE00CC19D7 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A922472FFAE00CC19D7 /* InterfaceController.swift */; };
 		D8342A952472FFAE00CC19D7 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A942472FFAE00CC19D7 /* ExtensionDelegate.swift */; };
 		D8342A972472FFAE00CC19D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8342A962472FFAE00CC19D7 /* Assets.xcassets */; };
-		D8342A9B2472FFAE00CC19D7 /* Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D8342A812472FFAD00CC19D7 /* Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D8342AA4247301E200CC19D7 /* PaymentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A77246F3F4C00CC19D7 /* PaymentHandler.swift */; };
 		D8342AA5247301EF00CC19D7 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A78246F3F4C00CC19D7 /* Configuration.swift */; };
 		D8342ABB2473287C00CC19D7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D8342ABA2473287B00CC19D7 /* README.md */; };
@@ -51,7 +49,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				D8342A8E2472FFAE00CC19D7 /* Watch App Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,7 +59,6 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				D8342A9B2472FFAE00CC19D7 /* Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,9 +76,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		27C71D1A0286AE677D7F9725 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		2932C0632B7E763E00B597ED /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		AA282EB38A40761B4D82B1EE /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
-		D8342A52246F1C1F00CC19D7 /* Offering-Apple-Pay-in-Your-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Offering-Apple-Pay-in-Your-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8342A52246F1C1F00CC19D7 /* Offering-Apple-Pay-in-Your-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Offering-Apple-Pay-in-Your-App.app"; path = "/Users/stephen.gilbert/Documents/GitHub/apple-pay-demo-ios/build/Debug-iphoneos/Offering-Apple-Pay-in-Your-App.app"; sourceTree = "<absolute>"; };
 		D8342A55246F1C1F00CC19D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8342A57246F1C1F00CC19D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D8342A59246F1C1F00CC19D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -92,11 +88,11 @@
 		D8342A77246F3F4C00CC19D7 /* PaymentHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentHandler.swift; sourceTree = "<group>"; };
 		D8342A78246F3F4C00CC19D7 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		D8342A7D246F3FF000CC19D7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		D8342A812472FFAD00CC19D7 /* Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8342A812472FFAD00CC19D7 /* Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Watch App.app"; path = "/Users/stephen.gilbert/Documents/GitHub/apple-pay-demo-ios/build/Debug-watchos/Watch App.app"; sourceTree = "<absolute>"; };
 		D8342A842472FFAD00CC19D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		D8342A862472FFAD00CC19D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8342A882472FFAD00CC19D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D8342A8D2472FFAE00CC19D7 /* Watch App Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Watch App Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8342A8D2472FFAE00CC19D7 /* Watch App Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; name = "Watch App Extension.appex"; path = "/Users/stephen.gilbert/Documents/GitHub/apple-pay-demo-ios/build/Debug-watchos/Watch App Extension.appex"; sourceTree = "<absolute>"; };
 		D8342A922472FFAE00CC19D7 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		D8342A942472FFAE00CC19D7 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		D8342A962472FFAE00CC19D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -132,10 +128,10 @@
 			name = Configuration;
 			sourceTree = "<group>";
 		};
-		BD7079808EEBE699751FC4A7 /* LICENSE */ = {
+		2932C0622B7E763E00B597ED /* LICENSE */ = {
 			isa = PBXGroup;
 			children = (
-				27C71D1A0286AE677D7F9725 /* LICENSE.txt */,
+				2932C0632B7E763E00B597ED /* LICENSE.txt */,
 			);
 			path = LICENSE;
 			sourceTree = "<group>";
@@ -148,20 +144,9 @@
 				D8342A54246F1C1F00CC19D7 /* Offering-Apple-Pay-in-Your-App */,
 				D8342A822472FFAD00CC19D7 /* Watch App */,
 				D8342A912472FFAE00CC19D7 /* Watch App Extension */,
-				D8342A53246F1C1F00CC19D7 /* Products */,
 				261CCF8B30556A52FFB0472B /* Configuration */,
-				BD7079808EEBE699751FC4A7 /* LICENSE */,
+				2932C0622B7E763E00B597ED /* LICENSE */,
 			);
-			sourceTree = "<group>";
-		};
-		D8342A53246F1C1F00CC19D7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D8342A52246F1C1F00CC19D7 /* Offering-Apple-Pay-in-Your-App.app */,
-				D8342A812472FFAD00CC19D7 /* Watch App.app */,
-				D8342A8D2472FFAE00CC19D7 /* Watch App Extension.appex */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		D8342A54246F1C1F00CC19D7 /* Offering-Apple-Pay-in-Your-App */ = {
@@ -297,7 +282,7 @@
 				Base,
 			);
 			mainGroup = D8342A49246F1C1F00CC19D7;
-			productRefGroup = D8342A53246F1C1F00CC19D7 /* Products */;
+			productRefGroup = D8342A49246F1C1F00CC19D7;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
