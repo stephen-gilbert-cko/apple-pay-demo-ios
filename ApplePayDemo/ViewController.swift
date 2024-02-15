@@ -38,7 +38,7 @@ class ViewController: UIViewController {
             NSLayoutConstraint.activate(constraints)
         }
 
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2DMake(37.7839, -122.4012), latitudinalMeters: 300, longitudinalMeters: 300)
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2DMake(51.530026, -0.092586), latitudinalMeters: 300, longitudinalMeters: 300)
         mapView.setRegion(region, animated: true)
     }
 

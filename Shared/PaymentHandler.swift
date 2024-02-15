@@ -1,9 +1,9 @@
 /*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-A shared class for handling payments across an app and its related extensions.
-*/
+ See LICENSE folder for this sample’s licensing information.
+ 
+ Abstract:
+ A shared class for handling payments across an app and its related extensions.
+ */
 
 import UIKit
 import PassKit
@@ -11,19 +11,19 @@ import PassKit
 typealias PaymentCompletionHandler = (Bool) -> Void
 
 class PaymentHandler: NSObject {
-
+    
     var paymentController: PKPaymentAuthorizationController?
     var paymentSummaryItems = [PKPaymentSummaryItem]()
     var paymentStatus = PKPaymentAuthorizationStatus.failure
     var completionHandler: PaymentCompletionHandler!
-
+    
     static let supportedNetworks: [PKPaymentNetwork] = [
         .amex,
         .discover,
         .masterCard,
         .visa
     ]
-
+    
     class func applePayStatus() -> (canMakePayments: Bool, canSetupCards: Bool) {
         return (PKPaymentAuthorizationController.canMakePayments(),
                 PKPaymentAuthorizationController.canMakePayments(usingNetworks: supportedNetworks))
@@ -41,7 +41,7 @@ class PaymentHandler: NSObject {
         
         let startComponents = calendar.dateComponents([.calendar, .year, .month, .day], from: shippingStart)
         let endComponents = calendar.dateComponents([.calendar, .year, .month, .day], from: shippingEnd)
-         
+        
         let shippingDelivery = PKShippingMethod(label: "Delivery", amount: NSDecimalNumber(string: "0.00"))
         shippingDelivery.dateComponentsRange = PKDateComponentsRange(start: startComponents, end: endComponents)
         shippingDelivery.detail = "Ticket sent to you address"
@@ -55,7 +55,7 @@ class PaymentHandler: NSObject {
     }
     
     func startPayment(completion: @escaping PaymentCompletionHandler) {
-
+        
         completionHandler = completion
         
         let ticket = PKPaymentSummaryItem(label: "Festival Entry", amount: NSDecimalNumber(string: "9.99"), type: .final)
@@ -68,15 +68,15 @@ class PaymentHandler: NSObject {
         paymentRequest.paymentSummaryItems = paymentSummaryItems
         paymentRequest.merchantIdentifier = Configuration.Merchant.identifier
         paymentRequest.merchantCapabilities = .capability3DS
-        paymentRequest.countryCode = "US"
-        paymentRequest.currencyCode = "USD"
+        paymentRequest.countryCode = "GB"
+        paymentRequest.currencyCode = "GBP"
         paymentRequest.supportedNetworks = PaymentHandler.supportedNetworks
         paymentRequest.shippingType = .delivery
         paymentRequest.shippingMethods = shippingMethodCalculator()
         paymentRequest.requiredShippingContactFields = [.name, .postalAddress]
-        #if !os(watchOS)
+#if !os(watchOS)
         paymentRequest.supportsCouponCode = true
-        #endif
+#endif
         
         // Display the payment request.
         paymentController = PKPaymentAuthorizationController(paymentRequest: paymentRequest)
@@ -95,14 +95,14 @@ class PaymentHandler: NSObject {
 // Set up PKPaymentAuthorizationControllerDelegate conformance.
 
 extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
-
+    
     func paymentAuthorizationController(_ controller: PKPaymentAuthorizationController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         
         // Perform basic validation on the provided contact information.
         var errors = [Error]()
         var status = PKPaymentAuthorizationStatus.success
-        if payment.shippingContact?.postalAddress?.isoCountryCode != "US" {
-            let pickupError = PKPaymentRequest.paymentShippingAddressUnserviceableError(withLocalizedDescription: "Sample App only available in the United States")
+        if payment.shippingContact?.postalAddress?.isoCountryCode != "GB" {
+            let pickupError = PKPaymentRequest.paymentShippingAddressUnserviceableError(withLocalizedDescription: "Please provide a UK address")
             let countryError = PKPaymentRequest.paymentShippingAddressInvalidError(withKey: CNPostalAddressCountryKey, localizedDescription: "Invalid country")
             errors.append(pickupError)
             errors.append(countryError)
@@ -110,6 +110,13 @@ extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
         } else {
             // Send the payment token to your server or payment provider to process here.
             // Once processed, return an appropriate status in the completion handler (success, failure, and so on).
+            
+            if !payment.token.paymentData.isEmpty {
+                let applePayTokenData = String(data: payment.token.paymentData, encoding: String.Encoding.utf8)!
+                print("Apple Pay token data: \(applePayTokenData)")
+                
+                // TODO: processToken(payment.token.paymentData)
+            }
         }
         
         self.paymentStatus = status
@@ -129,8 +136,8 @@ extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
         }
     }
     
-    #if !os(watchOS)
-
+#if !os(watchOS)
+    
     func paymentAuthorizationController(_ controller: PKPaymentAuthorizationController,
                                         didChangeCouponCode couponCode: String,
                                         handler completion: @escaping (PKPaymentRequestCouponCodeUpdate) -> Void) {
@@ -161,6 +168,6 @@ extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
             return
         }
     }
-
-    #endif
+    
+#endif
 }
