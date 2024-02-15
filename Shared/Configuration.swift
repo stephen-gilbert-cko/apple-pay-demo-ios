@@ -33,6 +33,6 @@ public class Configuration {
     }
 
     struct Merchant {
-        static let identifier = "merchant.\(MainBundle.prefix).Offering-Apple-Pay-in-Your-App"
+        static let identifier = "merchant.checkout.applepaydemo"
     }
 }
