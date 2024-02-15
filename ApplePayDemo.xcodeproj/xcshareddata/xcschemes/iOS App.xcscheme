@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D8342A51246F1C1F00CC19D7"
-               BuildableName = "Offering-Apple-Pay-in-Your-App.app"
-               BlueprintName = "Offering-Apple-Pay-in-Your-App"
-               ReferencedContainer = "container:Offering-Apple-Pay-in-Your-App.xcodeproj">
+               BuildableName = "ApplePayDemo.app"
+               BlueprintName = "ApplePayDemo"
+               ReferencedContainer = "container:ApplePayDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D8342A51246F1C1F00CC19D7"
-            BuildableName = "Offering-Apple-Pay-in-Your-App.app"
-            BlueprintName = "Offering-Apple-Pay-in-Your-App"
-            ReferencedContainer = "container:Offering-Apple-Pay-in-Your-App.xcodeproj">
+            BuildableName = "ApplePayDemo.app"
+            BlueprintName = "ApplePayDemo"
+            ReferencedContainer = "container:ApplePayDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D8342A51246F1C1F00CC19D7"
-            BuildableName = "Offering-Apple-Pay-in-Your-App.app"
-            BlueprintName = "Offering-Apple-Pay-in-Your-App"
-            ReferencedContainer = "container:Offering-Apple-Pay-in-Your-App.xcodeproj">
+            BuildableName = "ApplePayDemo.app"
+            BlueprintName = "ApplePayDemo"
+            ReferencedContainer = "container:ApplePayDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
