@@ -10,18 +10,19 @@ import UIKit
 import PassKit
 import MapKit
 
+@available(iOS 17.0, *)
 class SellViewController: UIViewController {
 
-    @IBOutlet var applePayView: UIView!
-    @IBOutlet var mapView: MKMapView!
-    let paymentHandler = PaymentHandler()
+    @IBOutlet weak var applePayView: UIView!
+    @IBOutlet weak var mapView: MKMapView!
+    let payoutHandler = PayoutHandler()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let result = PaymentHandler.applePayStatus()
+        let result = PayoutHandler.applePayStatus()
         var button: UIButton?
 
-        if result.canMakePayments {
+        if result.supportsDisbursements {
             button = PKPaymentButton(paymentButtonType: .continue, paymentButtonStyle: .black)
             button?.addTarget(self, action: #selector(SellViewController.payPressed), for: .touchUpInside)
         } else if result.canSetupCards {
@@ -44,7 +45,7 @@ class SellViewController: UIViewController {
     }
 
     @objc func payPressed(sender: AnyObject) {
-        paymentHandler.startPayment() { (success) in
+        payoutHandler.startPayment() { (success) in
             if success {
                 self.performSegue(withIdentifier: "Confirmation", sender: self)
             }
