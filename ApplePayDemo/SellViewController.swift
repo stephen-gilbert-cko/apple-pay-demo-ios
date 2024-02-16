@@ -1,18 +1,19 @@
-/*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-The main application view controller.
-*/
+//
+//  SellViewController.swift
+//  ApplePayDemo
+//
+//  Created by Stephen Gilbert on 16/02/2024.
+//  Copyright © 2024 Apple. All rights reserved.
+//
 
 import UIKit
 import PassKit
 import MapKit
 
-class ViewController: UIViewController {
+class SellViewController: UIViewController {
 
-    @IBOutlet weak var applePayView: UIView!
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet var applePayView: UIView!
+    @IBOutlet var mapView: MKMapView!
     let paymentHandler = PaymentHandler()
 
     override func viewDidLoad() {
@@ -21,11 +22,11 @@ class ViewController: UIViewController {
         var button: UIButton?
 
         if result.canMakePayments {
-            button = PKPaymentButton(paymentButtonType: .book, paymentButtonStyle: .black)
-            button?.addTarget(self, action: #selector(ViewController.payPressed), for: .touchUpInside)
+            button = PKPaymentButton(paymentButtonType: .continue, paymentButtonStyle: .black)
+            button?.addTarget(self, action: #selector(SellViewController.payPressed), for: .touchUpInside)
         } else if result.canSetupCards {
             button = PKPaymentButton(paymentButtonType: .setUp, paymentButtonStyle: .black)
-            button?.addTarget(self, action: #selector(ViewController.setupPressed), for: .touchUpInside)
+            button?.addTarget(self, action: #selector(SellViewController.setupPressed), for: .touchUpInside)
         }
 
         if let applePayButton = button {
@@ -55,3 +56,4 @@ class ViewController: UIViewController {
         passLibrary.openPaymentSetup()
     }
 }
+

@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2974A0DD2B7FA76F006BCE17 /* SellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974A0DC2B7FA76F006BCE17 /* SellViewController.swift */; };
 		D8342A56246F1C1F00CC19D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A55246F1C1F00CC19D7 /* AppDelegate.swift */; };
 		D8342A58246F1C1F00CC19D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A57246F1C1F00CC19D7 /* SceneDelegate.swift */; };
-		D8342A5A246F1C1F00CC19D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A59246F1C1F00CC19D7 /* ViewController.swift */; };
+		D8342A5A246F1C1F00CC19D7 /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A59246F1C1F00CC19D7 /* BuyViewController.swift */; };
 		D8342A5F246F1C2200CC19D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8342A5E246F1C2200CC19D7 /* Assets.xcassets */; };
 		D8342A62246F1C2200CC19D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8342A60246F1C2200CC19D7 /* LaunchScreen.storyboard */; };
 		D8342A79246F3F4C00CC19D7 /* PaymentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A77246F3F4C00CC19D7 /* PaymentHandler.swift */; };
@@ -78,12 +79,13 @@
 /* Begin PBXFileReference section */
 		2932C0632B7E763E00B597ED /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		2932C0642B7E7AEA00B597ED /* ApplePayDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApplePayDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2974A0DC2B7FA76F006BCE17 /* SellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellViewController.swift; sourceTree = "<group>"; };
 		298E053E2B7E7B310012F88B /* Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		298E053F2B7E7B310012F88B /* Watch App Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Watch App Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA282EB38A40761B4D82B1EE /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		D8342A55246F1C1F00CC19D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8342A57246F1C1F00CC19D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D8342A59246F1C1F00CC19D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D8342A59246F1C1F00CC19D7 /* BuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyViewController.swift; sourceTree = "<group>"; };
 		D8342A5E246F1C2200CC19D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8342A61246F1C2200CC19D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8342A63246F1C2200CC19D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -158,11 +160,12 @@
 				D86D4F3C24730C400074CF4C /* ApplePayDemo.entitlements */,
 				D8342A55246F1C1F00CC19D7 /* AppDelegate.swift */,
 				D8342A57246F1C1F00CC19D7 /* SceneDelegate.swift */,
-				D8342A59246F1C1F00CC19D7 /* ViewController.swift */,
+				D8342A59246F1C1F00CC19D7 /* BuyViewController.swift */,
 				D8342A7D246F3FF000CC19D7 /* Main.storyboard */,
 				D8342A5E246F1C2200CC19D7 /* Assets.xcassets */,
 				D8342A60246F1C2200CC19D7 /* LaunchScreen.storyboard */,
 				D8342A63246F1C2200CC19D7 /* Info.plist */,
+				2974A0DC2B7FA76F006BCE17 /* SellViewController.swift */,
 			);
 			path = ApplePayDemo;
 			sourceTree = "<group>";
@@ -332,8 +335,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8342A5A246F1C1F00CC19D7 /* ViewController.swift in Sources */,
+				D8342A5A246F1C1F00CC19D7 /* BuyViewController.swift in Sources */,
 				D8342A7A246F3F4C00CC19D7 /* Configuration.swift in Sources */,
+				2974A0DD2B7FA76F006BCE17 /* SellViewController.swift in Sources */,
 				D8342A56246F1C1F00CC19D7 /* AppDelegate.swift in Sources */,
 				D8342A58246F1C1F00CC19D7 /* SceneDelegate.swift in Sources */,
 				D8342A79246F3F4C00CC19D7 /* PaymentHandler.swift in Sources */,
@@ -576,7 +580,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				OFFERING_APPLE_PAY_BUNDLE_PREFIX = com.checkout.applepaydemo;
-				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.applepaydemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.applepaydemo.watchkit.extension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -603,7 +607,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				OFFERING_APPLE_PAY_BUNDLE_PREFIX = com.checkout.applepaydemo;
-				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.applepaydemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.applepaydemo.watchkit.extension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -626,7 +630,7 @@
 				IBSC_MODULE = Watch_App_Extension;
 				INFOPLIST_FILE = "Watch App/Info.plist";
 				OFFERING_APPLE_PAY_BUNDLE_PREFIX = com.checkout.applepaydemo;
-				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.applepaydemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.applepaydemo.watchkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -649,7 +653,7 @@
 				IBSC_MODULE = Watch_App_Extension;
 				INFOPLIST_FILE = "Watch App/Info.plist";
 				OFFERING_APPLE_PAY_BUNDLE_PREFIX = com.checkout.applepaydemo;
-				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.applepaydemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.applepaydemo.watchkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
