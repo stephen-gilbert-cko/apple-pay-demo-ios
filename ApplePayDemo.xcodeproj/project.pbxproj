@@ -8,53 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		2974A0DD2B7FA76F006BCE17 /* SellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974A0DC2B7FA76F006BCE17 /* SellViewController.swift */; };
-		2974A0DF2B7FC90D006BCE17 /* PayoutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974A0DE2B7FC90D006BCE17 /* PayoutHandler.swift */; };
+		2974A0E32B7FDA4F006BCE17 /* PaymentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974A0E02B7FDA4F006BCE17 /* PaymentHandler.swift */; };
+		2974A0E42B7FDA4F006BCE17 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974A0E12B7FDA4F006BCE17 /* Configuration.swift */; };
+		2974A0E52B7FDA4F006BCE17 /* PayoutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974A0E22B7FDA4F006BCE17 /* PayoutHandler.swift */; };
 		D8342A56246F1C1F00CC19D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A55246F1C1F00CC19D7 /* AppDelegate.swift */; };
 		D8342A58246F1C1F00CC19D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A57246F1C1F00CC19D7 /* SceneDelegate.swift */; };
 		D8342A5A246F1C1F00CC19D7 /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A59246F1C1F00CC19D7 /* BuyViewController.swift */; };
 		D8342A5F246F1C2200CC19D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8342A5E246F1C2200CC19D7 /* Assets.xcassets */; };
 		D8342A62246F1C2200CC19D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8342A60246F1C2200CC19D7 /* LaunchScreen.storyboard */; };
-		D8342A79246F3F4C00CC19D7 /* PaymentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A77246F3F4C00CC19D7 /* PaymentHandler.swift */; };
-		D8342A7A246F3F4C00CC19D7 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A78246F3F4C00CC19D7 /* Configuration.swift */; };
 		D8342A7E246F3FF000CC19D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8342A7D246F3FF000CC19D7 /* Main.storyboard */; };
-		D8342A852472FFAD00CC19D7 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8342A832472FFAD00CC19D7 /* Interface.storyboard */; };
-		D8342A872472FFAD00CC19D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8342A862472FFAD00CC19D7 /* Assets.xcassets */; };
-		D8342A932472FFAE00CC19D7 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A922472FFAE00CC19D7 /* InterfaceController.swift */; };
-		D8342A952472FFAE00CC19D7 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A942472FFAE00CC19D7 /* ExtensionDelegate.swift */; };
-		D8342A972472FFAE00CC19D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8342A962472FFAE00CC19D7 /* Assets.xcassets */; };
-		D8342AA4247301E200CC19D7 /* PaymentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A77246F3F4C00CC19D7 /* PaymentHandler.swift */; };
-		D8342AA5247301EF00CC19D7 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A78246F3F4C00CC19D7 /* Configuration.swift */; };
 		D8342ABB2473287C00CC19D7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D8342ABA2473287B00CC19D7 /* README.md */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		D8342A8F2472FFAE00CC19D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D8342A4A246F1C1F00CC19D7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D8342A8C2472FFAE00CC19D7;
-			remoteInfo = "Watch App Extension";
-		};
-		D8342A992472FFAE00CC19D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D8342A4A246F1C1F00CC19D7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D8342A802472FFAD00CC19D7;
-			remoteInfo = "Watch App";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
-		D8342A9F2472FFAE00CC19D7 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D8342AA32472FFAE00CC19D7 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -78,12 +44,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2932C0632B7E763E00B597ED /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		2932C0642B7E7AEA00B597ED /* ApplePayDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApplePayDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2974A0DC2B7FA76F006BCE17 /* SellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellViewController.swift; sourceTree = "<group>"; };
-		2974A0DE2B7FC90D006BCE17 /* PayoutHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutHandler.swift; sourceTree = "<group>"; };
-		298E053E2B7E7B310012F88B /* Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		298E053F2B7E7B310012F88B /* Watch App Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Watch App Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2974A0E02B7FDA4F006BCE17 /* PaymentHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentHandler.swift; path = "../../../../Downloads/apple-pay-demo-ios-main/Shared/PaymentHandler.swift"; sourceTree = "<group>"; };
+		2974A0E12B7FDA4F006BCE17 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = "../../../../Downloads/apple-pay-demo-ios-main/Shared/Configuration.swift"; sourceTree = "<group>"; };
+		2974A0E22B7FDA4F006BCE17 /* PayoutHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PayoutHandler.swift; path = "../../../../Downloads/apple-pay-demo-ios-main/Shared/PayoutHandler.swift"; sourceTree = "<group>"; };
 		AA282EB38A40761B4D82B1EE /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		D8342A55246F1C1F00CC19D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8342A57246F1C1F00CC19D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,30 +56,13 @@
 		D8342A5E246F1C2200CC19D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8342A61246F1C2200CC19D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8342A63246F1C2200CC19D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D8342A77246F3F4C00CC19D7 /* PaymentHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentHandler.swift; sourceTree = "<group>"; };
-		D8342A78246F3F4C00CC19D7 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		D8342A7D246F3FF000CC19D7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		D8342A842472FFAD00CC19D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
-		D8342A862472FFAD00CC19D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D8342A882472FFAD00CC19D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D8342A922472FFAE00CC19D7 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
-		D8342A942472FFAE00CC19D7 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		D8342A962472FFAE00CC19D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D8342A982472FFAE00CC19D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8342ABA2473287B00CC19D7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D86D4F3C24730C400074CF4C /* ApplePayDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ApplePayDemo.entitlements; sourceTree = "<group>"; };
-		D86D4F3D24730CB00074CF4C /* Watch App Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Watch App Extension.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		D8342A4F246F1C1F00CC19D7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D8342A8A2472FFAE00CC19D7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -132,27 +80,14 @@
 			name = Configuration;
 			sourceTree = "<group>";
 		};
-		2932C0622B7E763E00B597ED /* LICENSE */ = {
-			isa = PBXGroup;
-			children = (
-				2932C0632B7E763E00B597ED /* LICENSE.txt */,
-			);
-			path = LICENSE;
-			sourceTree = "<group>";
-		};
 		D8342A49246F1C1F00CC19D7 = {
 			isa = PBXGroup;
 			children = (
 				D8342ABA2473287B00CC19D7 /* README.md */,
 				D8342A76246F3F4C00CC19D7 /* Shared */,
 				D8342A54246F1C1F00CC19D7 /* ApplePayDemo */,
-				D8342A822472FFAD00CC19D7 /* Watch App */,
-				D8342A912472FFAE00CC19D7 /* Watch App Extension */,
 				261CCF8B30556A52FFB0472B /* Configuration */,
-				2932C0622B7E763E00B597ED /* LICENSE */,
 				2932C0642B7E7AEA00B597ED /* ApplePayDemo.app */,
-				298E053E2B7E7B310012F88B /* Watch App.app */,
-				298E053F2B7E7B310012F88B /* Watch App Extension.appex */,
 			);
 			sourceTree = "<group>";
 		};
@@ -175,33 +110,11 @@
 		D8342A76246F3F4C00CC19D7 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				D8342A77246F3F4C00CC19D7 /* PaymentHandler.swift */,
-				D8342A78246F3F4C00CC19D7 /* Configuration.swift */,
-				2974A0DE2B7FC90D006BCE17 /* PayoutHandler.swift */,
+				2974A0E12B7FDA4F006BCE17 /* Configuration.swift */,
+				2974A0E02B7FDA4F006BCE17 /* PaymentHandler.swift */,
+				2974A0E22B7FDA4F006BCE17 /* PayoutHandler.swift */,
 			);
 			path = Shared;
-			sourceTree = "<group>";
-		};
-		D8342A822472FFAD00CC19D7 /* Watch App */ = {
-			isa = PBXGroup;
-			children = (
-				D8342A832472FFAD00CC19D7 /* Interface.storyboard */,
-				D8342A862472FFAD00CC19D7 /* Assets.xcassets */,
-				D8342A882472FFAD00CC19D7 /* Info.plist */,
-			);
-			path = "Watch App";
-			sourceTree = "<group>";
-		};
-		D8342A912472FFAE00CC19D7 /* Watch App Extension */ = {
-			isa = PBXGroup;
-			children = (
-				D86D4F3D24730CB00074CF4C /* Watch App Extension.entitlements */,
-				D8342A922472FFAE00CC19D7 /* InterfaceController.swift */,
-				D8342A942472FFAE00CC19D7 /* ExtensionDelegate.swift */,
-				D8342A962472FFAE00CC19D7 /* Assets.xcassets */,
-				D8342A982472FFAE00CC19D7 /* Info.plist */,
-			);
-			path = "Watch App Extension";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,46 +133,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				D8342A9A2472FFAE00CC19D7 /* PBXTargetDependency */,
 			);
 			name = ApplePayDemo;
 			productName = "Offering-Apple-Pay-in-Your-App";
 			productReference = 2932C0642B7E7AEA00B597ED /* ApplePayDemo.app */;
 			productType = "com.apple.product-type.application";
-		};
-		D8342A802472FFAD00CC19D7 /* Watch App */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D8342AA02472FFAE00CC19D7 /* Build configuration list for PBXNativeTarget "Watch App" */;
-			buildPhases = (
-				D8342A7F2472FFAD00CC19D7 /* Resources */,
-				D8342A9F2472FFAE00CC19D7 /* Embed App Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D8342A902472FFAE00CC19D7 /* PBXTargetDependency */,
-			);
-			name = "Watch App";
-			productName = "Watch App";
-			productReference = 298E053E2B7E7B310012F88B /* Watch App.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		D8342A8C2472FFAE00CC19D7 /* Watch App Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D8342A9C2472FFAE00CC19D7 /* Build configuration list for PBXNativeTarget "Watch App Extension" */;
-			buildPhases = (
-				D8342A892472FFAE00CC19D7 /* Sources */,
-				D8342A8A2472FFAE00CC19D7 /* Frameworks */,
-				D8342A8B2472FFAE00CC19D7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Watch App Extension";
-			productName = "Watch App Extension";
-			productReference = 298E053F2B7E7B310012F88B /* Watch App Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -272,12 +150,6 @@
 				ORGANIZATIONNAME = Apple;
 				TargetAttributes = {
 					D8342A51246F1C1F00CC19D7 = {
-						CreatedOnToolsVersion = 11.4.1;
-					};
-					D8342A802472FFAD00CC19D7 = {
-						CreatedOnToolsVersion = 11.4.1;
-					};
-					D8342A8C2472FFAE00CC19D7 = {
 						CreatedOnToolsVersion = 11.4.1;
 					};
 				};
@@ -296,8 +168,6 @@
 			projectRoot = "";
 			targets = (
 				D8342A51246F1C1F00CC19D7 /* ApplePayDemo */,
-				D8342A802472FFAD00CC19D7 /* Watch App */,
-				D8342A8C2472FFAE00CC19D7 /* Watch App Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -314,23 +184,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D8342A7F2472FFAD00CC19D7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D8342A872472FFAD00CC19D7 /* Assets.xcassets in Resources */,
-				D8342A852472FFAD00CC19D7 /* Interface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D8342A8B2472FFAE00CC19D7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D8342A972472FFAE00CC19D7 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -338,41 +191,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2974A0E42B7FDA4F006BCE17 /* Configuration.swift in Sources */,
+				2974A0E52B7FDA4F006BCE17 /* PayoutHandler.swift in Sources */,
 				D8342A5A246F1C1F00CC19D7 /* BuyViewController.swift in Sources */,
-				2974A0DF2B7FC90D006BCE17 /* PayoutHandler.swift in Sources */,
-				D8342A7A246F3F4C00CC19D7 /* Configuration.swift in Sources */,
+				2974A0E32B7FDA4F006BCE17 /* PaymentHandler.swift in Sources */,
 				2974A0DD2B7FA76F006BCE17 /* SellViewController.swift in Sources */,
 				D8342A56246F1C1F00CC19D7 /* AppDelegate.swift in Sources */,
 				D8342A58246F1C1F00CC19D7 /* SceneDelegate.swift in Sources */,
-				D8342A79246F3F4C00CC19D7 /* PaymentHandler.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D8342A892472FFAE00CC19D7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D8342A952472FFAE00CC19D7 /* ExtensionDelegate.swift in Sources */,
-				D8342AA4247301E200CC19D7 /* PaymentHandler.swift in Sources */,
-				D8342AA5247301EF00CC19D7 /* Configuration.swift in Sources */,
-				D8342A932472FFAE00CC19D7 /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D8342A902472FFAE00CC19D7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D8342A8C2472FFAE00CC19D7 /* Watch App Extension */;
-			targetProxy = D8342A8F2472FFAE00CC19D7 /* PBXContainerItemProxy */;
-		};
-		D8342A9A2472FFAE00CC19D7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D8342A802472FFAD00CC19D7 /* Watch App */;
-			targetProxy = D8342A992472FFAE00CC19D7 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D8342A60246F1C2200CC19D7 /* LaunchScreen.storyboard */ = {
@@ -381,14 +210,6 @@
 				D8342A61246F1C2200CC19D7 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		D8342A832472FFAD00CC19D7 /* Interface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D8342A842472FFAD00CC19D7 /* Base */,
-			);
-			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -568,106 +389,6 @@
 			};
 			name = Release;
 		};
-		D8342A9D2472FFAE00CC19D7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA282EB38A40761B4D82B1EE /* SampleCode.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_ENTITLEMENTS = "Watch App Extension/Watch App Extension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X34KMH9ZDX;
-				INFOPLIST_FILE = "Watch App Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				OFFERING_APPLE_PAY_BUNDLE_PREFIX = com.checkout.applepaydemo;
-				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.applepaydemo.watchkit.extension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
-			};
-			name = Debug;
-		};
-		D8342A9E2472FFAE00CC19D7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA282EB38A40761B4D82B1EE /* SampleCode.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_ENTITLEMENTS = "Watch App Extension/Watch App Extension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X34KMH9ZDX;
-				INFOPLIST_FILE = "Watch App Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				OFFERING_APPLE_PAY_BUNDLE_PREFIX = com.checkout.applepaydemo;
-				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.applepaydemo.watchkit.extension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
-			};
-			name = Release;
-		};
-		D8342AA12472FFAE00CC19D7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA282EB38A40761B4D82B1EE /* SampleCode.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X34KMH9ZDX;
-				IBSC_MODULE = Watch_App_Extension;
-				INFOPLIST_FILE = "Watch App/Info.plist";
-				OFFERING_APPLE_PAY_BUNDLE_PREFIX = com.checkout.applepaydemo;
-				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.applepaydemo.watchkit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
-			};
-			name = Debug;
-		};
-		D8342AA22472FFAE00CC19D7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA282EB38A40761B4D82B1EE /* SampleCode.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X34KMH9ZDX;
-				IBSC_MODULE = Watch_App_Extension;
-				INFOPLIST_FILE = "Watch App/Info.plist";
-				OFFERING_APPLE_PAY_BUNDLE_PREFIX = com.checkout.applepaydemo;
-				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.applepaydemo.watchkit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -685,24 +406,6 @@
 			buildConfigurations = (
 				D8342A67246F1C2200CC19D7 /* Debug */,
 				D8342A68246F1C2200CC19D7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D8342A9C2472FFAE00CC19D7 /* Build configuration list for PBXNativeTarget "Watch App Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D8342A9D2472FFAE00CC19D7 /* Debug */,
-				D8342A9E2472FFAE00CC19D7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D8342AA02472FFAE00CC19D7 /* Build configuration list for PBXNativeTarget "Watch App" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D8342AA12472FFAE00CC19D7 /* Debug */,
-				D8342AA22472FFAE00CC19D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
