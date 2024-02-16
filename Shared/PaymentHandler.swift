@@ -17,6 +17,19 @@ class PaymentHandler: NSObject {
     var paymentStatus = PKPaymentAuthorizationStatus.failure
     var completionHandler: PaymentCompletionHandler!
     
+    struct ApplePayTokenData: Codable {
+        let version: String
+        let data: String
+        let signature: String
+        let header: ApplePayTokenDataHeader
+    }
+    
+    struct ApplePayTokenDataHeader: Codable {
+        let ephemeralPublicKey: String
+        let publicKeyHash: String
+        let transactionId: String
+    }
+    
     static let supportedNetworks: [PKPaymentNetwork] = [
         .amex,
         .discover,
@@ -74,9 +87,7 @@ class PaymentHandler: NSObject {
         paymentRequest.shippingType = .delivery
         paymentRequest.shippingMethods = shippingMethodCalculator()
         paymentRequest.requiredShippingContactFields = [.name, .postalAddress]
-#if !os(watchOS)
         paymentRequest.supportsCouponCode = true
-#endif
         
         // Display the payment request.
         paymentController = PKPaymentAuthorizationController(paymentRequest: paymentRequest)
@@ -89,6 +100,51 @@ class PaymentHandler: NSObject {
                 self.completionHandler(false)
             }
         })
+    }
+    
+    func generateCkoToken(applePayTokenData: ApplePayTokenData) {
+        guard let url = URL(string: "https://api.sandbox.checkout.com/tokens") else {
+            return
+        }
+        
+        print("\nRequesting Checkout.com token...\n")
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("pk_sbox_svm7ctgfxkhbfthi4blfb765nyq", forHTTPHeaderField: "Authorization")
+        
+        // Encode the nested ApplePayTokenDataHeader
+        let headerEncoder = JSONEncoder()
+        guard let headerData = try? headerEncoder.encode(applePayTokenData.header) else {
+            return
+        }
+        
+        let body: [String: Any] = [
+            "type": "applepay",
+            "token_data": [
+                "version": applePayTokenData.version,
+                "data": applePayTokenData.data,
+                "signature": applePayTokenData.signature,
+                "header": try? JSONSerialization.jsonObject(with: headerData, options: [])
+            ]
+        ]
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
+        
+        // Make the request
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            
+            do {
+                let response = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                print("Response:\n\(response)")
+            } catch {
+                print(error)
+            }
+        }
+        task.resume()
     }
 }
 
@@ -112,10 +168,14 @@ extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
             // Once processed, return an appropriate status in the completion handler (success, failure, and so on).
             
             if !payment.token.paymentData.isEmpty {
-                let applePayTokenData = String(data: payment.token.paymentData, encoding: String.Encoding.utf8)!
-                print("Apple Pay token data: \(applePayTokenData)")
+                let tokenData = payment.token.paymentData
+                let tokenString = String(data: tokenData, encoding: String.Encoding.utf8)!
+                print("Apple Pay token data: \(tokenString)")
                 
-                // TODO: processToken(payment.token.paymentData)
+                // Process data and get back Checkout.com token
+                let decoder = JSONDecoder()
+                let decodedTokenData = try! decoder.decode(ApplePayTokenData.self, from: tokenData)
+                generateCkoToken(applePayTokenData: decodedTokenData)
             }
         }
         
@@ -135,8 +195,6 @@ extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
             }
         }
     }
-    
-#if !os(watchOS)
     
     func paymentAuthorizationController(_ controller: PKPaymentAuthorizationController,
                                         didChangeCouponCode couponCode: String,
@@ -169,5 +227,4 @@ extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
         }
     }
     
-#endif
 }
