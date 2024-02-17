@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2974A0DD2B7FA76F006BCE17 /* SellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974A0DC2B7FA76F006BCE17 /* SellViewController.swift */; };
-		2974A0E32B7FDA4F006BCE17 /* PaymentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974A0E02B7FDA4F006BCE17 /* PaymentHandler.swift */; };
-		2974A0E42B7FDA4F006BCE17 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974A0E12B7FDA4F006BCE17 /* Configuration.swift */; };
-		2974A0E52B7FDA4F006BCE17 /* PayoutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974A0E22B7FDA4F006BCE17 /* PayoutHandler.swift */; };
+		2974A0F52B802F64006BCE17 /* PayoutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974A0F22B802F64006BCE17 /* PayoutHandler.swift */; };
+		2974A0F62B802F64006BCE17 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974A0F32B802F64006BCE17 /* Configuration.swift */; };
+		2974A0F72B802F64006BCE17 /* PaymentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974A0F42B802F64006BCE17 /* PaymentHandler.swift */; };
 		D8342A56246F1C1F00CC19D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A55246F1C1F00CC19D7 /* AppDelegate.swift */; };
 		D8342A58246F1C1F00CC19D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A57246F1C1F00CC19D7 /* SceneDelegate.swift */; };
 		D8342A5A246F1C1F00CC19D7 /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342A59246F1C1F00CC19D7 /* BuyViewController.swift */; };
@@ -46,9 +46,9 @@
 /* Begin PBXFileReference section */
 		2932C0642B7E7AEA00B597ED /* ApplePayDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApplePayDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2974A0DC2B7FA76F006BCE17 /* SellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellViewController.swift; sourceTree = "<group>"; };
-		2974A0E02B7FDA4F006BCE17 /* PaymentHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentHandler.swift; path = "../../../../Downloads/apple-pay-demo-ios-main/Shared/PaymentHandler.swift"; sourceTree = "<group>"; };
-		2974A0E12B7FDA4F006BCE17 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = "../../../../Downloads/apple-pay-demo-ios-main/Shared/Configuration.swift"; sourceTree = "<group>"; };
-		2974A0E22B7FDA4F006BCE17 /* PayoutHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PayoutHandler.swift; path = "../../../../Downloads/apple-pay-demo-ios-main/Shared/PayoutHandler.swift"; sourceTree = "<group>"; };
+		2974A0F22B802F64006BCE17 /* PayoutHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayoutHandler.swift; sourceTree = "<group>"; };
+		2974A0F32B802F64006BCE17 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		2974A0F42B802F64006BCE17 /* PaymentHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentHandler.swift; sourceTree = "<group>"; };
 		AA282EB38A40761B4D82B1EE /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		D8342A55246F1C1F00CC19D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8342A57246F1C1F00CC19D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,9 +110,9 @@
 		D8342A76246F3F4C00CC19D7 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				2974A0E12B7FDA4F006BCE17 /* Configuration.swift */,
-				2974A0E02B7FDA4F006BCE17 /* PaymentHandler.swift */,
-				2974A0E22B7FDA4F006BCE17 /* PayoutHandler.swift */,
+				2974A0F32B802F64006BCE17 /* Configuration.swift */,
+				2974A0F42B802F64006BCE17 /* PaymentHandler.swift */,
+				2974A0F22B802F64006BCE17 /* PayoutHandler.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -191,11 +191,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2974A0E42B7FDA4F006BCE17 /* Configuration.swift in Sources */,
-				2974A0E52B7FDA4F006BCE17 /* PayoutHandler.swift in Sources */,
+				2974A0F62B802F64006BCE17 /* Configuration.swift in Sources */,
 				D8342A5A246F1C1F00CC19D7 /* BuyViewController.swift in Sources */,
-				2974A0E32B7FDA4F006BCE17 /* PaymentHandler.swift in Sources */,
 				2974A0DD2B7FA76F006BCE17 /* SellViewController.swift in Sources */,
+				2974A0F72B802F64006BCE17 /* PaymentHandler.swift in Sources */,
+				2974A0F52B802F64006BCE17 /* PayoutHandler.swift in Sources */,
 				D8342A56246F1C1F00CC19D7 /* AppDelegate.swift in Sources */,
 				D8342A58246F1C1F00CC19D7 /* SceneDelegate.swift in Sources */,
 			);
