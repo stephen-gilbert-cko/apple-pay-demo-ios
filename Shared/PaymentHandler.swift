@@ -112,7 +112,7 @@ class PaymentHandler: NSObject {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("pk_sbox_svm7ctgfxkhbfthi4blfb765nyq", forHTTPHeaderField: "Authorization")
+        request.setValue(Configuration.CheckoutDotCom.publicKey, forHTTPHeaderField: "Authorization")
         
         // Encode the nested ApplePayTokenDataHeader
         let headerEncoder = JSONEncoder()
@@ -164,8 +164,7 @@ extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
             errors.append(countryError)
             status = .failure
         } else {
-            // Send the payment token to your server or payment provider to process here.
-            // Once processed, return an appropriate status in the completion handler (success, failure, and so on).
+            // Send the payment token to payment provider to process
             
             if !payment.token.paymentData.isEmpty {
                 let tokenData = payment.token.paymentData
@@ -176,6 +175,8 @@ extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
                 let decoder = JSONDecoder()
                 let decodedTokenData = try! decoder.decode(ApplePayTokenData.self, from: tokenData)
                 generateCkoToken(applePayTokenData: decodedTokenData)
+                
+                // Once processed, return an appropriate status in the completion handler (success, failure, and so on).
             }
         }
         

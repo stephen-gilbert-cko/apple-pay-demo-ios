@@ -35,4 +35,8 @@ public class Configuration {
     struct Merchant {
         static let identifier = "merchant.checkout.applepaydemo"
     }
+    
+    struct CheckoutDotCom {
+        static let publicKey = "pk_sbox_svm7ctgfxkhbfthi4blfb765nyq"
+    }
 }
