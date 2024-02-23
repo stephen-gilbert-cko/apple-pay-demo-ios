@@ -1,8 +1,6 @@
 /*
- See LICENSE folder for this sample’s licensing information.
- 
  Abstract:
- A shared class for handling payments across an app and its related extensions.
+ A shared class for handling payments across an app and its related extensions
  */
 
 import UIKit
@@ -37,18 +35,18 @@ class PaymentHandler: NSObject {
         .visa
     ]
     
+    // Filter available cards by supported schemes defined above
     class func applePayStatus() -> (canMakePayments: Bool, canSetupCards: Bool) {
         return (PKPaymentAuthorizationController.canMakePayments(),
                 PKPaymentAuthorizationController.canMakePayments(usingNetworks: supportedNetworks))
     }
     
-    // Define the shipping methods.
+    // Define shipping methods
     func shippingMethodCalculator() -> [PKShippingMethod] {
-        // Calculate the pickup date.
         
+        // Calculate delivery dates
         let today = Date()
         let calendar = Calendar.current
-        
         let shippingStart = calendar.date(byAdding: .day, value: 3, to: today)!
         let shippingEnd = calendar.date(byAdding: .day, value: 5, to: today)!
         
@@ -57,7 +55,7 @@ class PaymentHandler: NSObject {
         
         let shippingDelivery = PKShippingMethod(label: "Delivery", amount: NSDecimalNumber(string: "0.00"))
         shippingDelivery.dateComponentsRange = PKDateComponentsRange(start: startComponents, end: endComponents)
-        shippingDelivery.detail = "Ticket sent to you address"
+        shippingDelivery.detail = "Ticket sent to your address"
         shippingDelivery.identifier = "DELIVERY"
         
         let shippingCollection = PKShippingMethod(label: "Collection", amount: NSDecimalNumber(string: "0.00"))
@@ -76,7 +74,7 @@ class PaymentHandler: NSObject {
         let total = PKPaymentSummaryItem(label: "Total", amount: NSDecimalNumber(string: "10.99"), type: .final)
         paymentSummaryItems = [ticket, tax, total]
         
-        // Create a payment request.
+        // Build a payment request
         let paymentRequest = PKPaymentRequest()
         paymentRequest.paymentSummaryItems = paymentSummaryItems
         paymentRequest.merchantIdentifier = Configuration.Merchant.identifier
@@ -89,7 +87,7 @@ class PaymentHandler: NSObject {
         paymentRequest.requiredShippingContactFields = [.name, .postalAddress]
         paymentRequest.supportsCouponCode = true
         
-        // Display the payment request.
+        // Display the payment sheet
         paymentController = PKPaymentAuthorizationController(paymentRequest: paymentRequest)
         paymentController?.delegate = self
         paymentController?.present(completion: { (presented: Bool) in
@@ -102,59 +100,63 @@ class PaymentHandler: NSObject {
         })
     }
     
-    func generateCkoToken(applePayTokenData: ApplePayTokenData) {
+    // Send Apple Pay token data to Checkout.com for decryption
+    // Return temporary token (tok_...) for further processing
+    func generateCkoToken(applePayTokenData: ApplePayTokenData, completion: @escaping (Result<String, Error>) -> Void) {
         guard let url = URL(string: "https://api.sandbox.checkout.com/tokens") else {
+            completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
             return
         }
-        
-        print("\nRequesting Checkout.com token...\n")
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(Configuration.CheckoutDotCom.publicKey, forHTTPHeaderField: "Authorization")
         
-        // Encode the nested ApplePayTokenDataHeader
-        let headerEncoder = JSONEncoder()
-        guard let headerData = try? headerEncoder.encode(applePayTokenData.header) else {
-            return
-        }
-        
-        let body: [String: Any] = [
-            "type": "applepay",
-            "token_data": [
-                "version": applePayTokenData.version,
-                "data": applePayTokenData.data,
-                "signature": applePayTokenData.signature,
-                "header": try? JSONSerialization.jsonObject(with: headerData, options: [])
-            ]
-        ]
-        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
-        
-        // Make the request
-        let task = URLSession.shared.dataTask(with: request) { data, _, error in
-            guard let data = data, error == nil else {
-                return
-            }
+        do {
+            let headerData = try JSONEncoder().encode(applePayTokenData.header)
             
-            do {
-                let response = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-                print("Response:\n\(response)")
-            } catch {
-                print(error)
-            }
+            let body: [String: Any] = [
+                "type": "applepay",
+                "token_data": [
+                    "version": applePayTokenData.version,
+                    "data": applePayTokenData.data,
+                    "signature": applePayTokenData.signature,
+                    "header": try JSONSerialization.jsonObject(with: headerData, options: [])
+                ]
+            ]
+            
+            request.httpBody = try JSONSerialization.data(withJSONObject: body)
+            
+            URLSession.shared.dataTask(with: request) { data, _, error in
+                guard let data = data, error == nil else {
+                    completion(.failure(error ?? NSError(domain: "Data Task Failed", code: 0, userInfo: nil)))
+                    return
+                }
+                
+                do {
+                    if let jsonResponse = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                       let token = jsonResponse["token"] as? String {
+                        completion(.success(token))
+                    } else {
+                        completion(.failure(NSError(domain: "Token not found in response", code: 0, userInfo: nil)))
+                    }
+                } catch {
+                    completion(.failure(error))
+                }
+            }.resume()
+            
+        } catch {
+            completion(.failure(NSError(domain: "Header Encoding Failed", code: 0, userInfo: nil)))
         }
-        task.resume()
     }
 }
-
-// Set up PKPaymentAuthorizationControllerDelegate conformance.
 
 extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
     
     func paymentAuthorizationController(_ controller: PKPaymentAuthorizationController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         
-        // Perform basic validation on the provided contact information.
+        // Perform basic validation on the provided contact information
         var errors = [Error]()
         var status = PKPaymentAuthorizationStatus.success
         if payment.shippingContact?.postalAddress?.isoCountryCode != "GB" {
@@ -164,29 +166,34 @@ extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
             errors.append(countryError)
             status = .failure
         } else {
-            // Send the payment token to payment provider to process
-            
+            // Retrieve encrypted Apple Pay token data
             if !payment.token.paymentData.isEmpty {
                 let tokenData = payment.token.paymentData
                 let tokenString = String(data: tokenData, encoding: String.Encoding.utf8)!
                 print("Apple Pay token data: \(tokenString)")
                 
-                // Process data and get back Checkout.com token
+                // Send data to Checkout.com to generate temporary token
                 let decoder = JSONDecoder()
                 let decodedTokenData = try! decoder.decode(ApplePayTokenData.self, from: tokenData)
-                generateCkoToken(applePayTokenData: decodedTokenData)
-                
-                // Once processed, return an appropriate status in the completion handler (success, failure, and so on).
+                generateCkoToken(applePayTokenData: decodedTokenData) { result in
+                    switch result {
+                    case .success(let token):
+                        print("Token: \(token)")
+                    case .failure(let error):
+                        print("Error: \(error)")
+                    }
+                }
+                // TODO: Send temporary token (tok_...) to server to request payment
+                // Once processed, return an appropriate status in the completion handler (success, failure etc.)
             }
         }
-        
         self.paymentStatus = status
         completion(PKPaymentAuthorizationResult(status: status, errors: errors))
     }
     
     func paymentAuthorizationControllerDidFinish(_ controller: PKPaymentAuthorizationController) {
         controller.dismiss {
-            // The payment sheet doesn't automatically dismiss once it has finished. Dismiss the payment sheet.
+            // The payment sheet doesn't automatically dismiss once it has finished; dismiss the payment sheet
             DispatchQueue.main.async {
                 if self.paymentStatus == .success {
                     self.completionHandler!(true)
@@ -200,8 +207,8 @@ extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
     func paymentAuthorizationController(_ controller: PKPaymentAuthorizationController,
                                         didChangeCouponCode couponCode: String,
                                         handler completion: @escaping (PKPaymentRequestCouponCodeUpdate) -> Void) {
-        // The `didChangeCouponCode` delegate method allows you to make changes when the user enters or updates a coupon code.
         
+        // Apply a discount when the user enters a valid coupon code
         func applyDiscount(items: [PKPaymentSummaryItem]) -> [PKPaymentSummaryItem] {
             let tickets = items.first!
             let couponDiscountItem = PKPaymentSummaryItem(label: "Coupon Code Applied", amount: NSDecimalNumber(string: "-2.00"))
@@ -212,20 +219,19 @@ extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
         }
         
         if couponCode.uppercased() == "FESTIVAL" {
-            // If the coupon code is valid, update the summary items.
+            // If the coupon code is valid, update the summary items
             let couponCodeSummaryItems = applyDiscount(items: paymentSummaryItems)
             completion(PKPaymentRequestCouponCodeUpdate(paymentSummaryItems: applyDiscount(items: couponCodeSummaryItems)))
             return
         } else if couponCode.isEmpty {
-            // If the user doesn't enter a code, return the current payment summary items.
+            // If the user doesn't enter a code, return the current payment summary items
             completion(PKPaymentRequestCouponCodeUpdate(paymentSummaryItems: paymentSummaryItems))
             return
         } else {
-            // If the user enters a code, but it's not valid, we can display an error.
+            // If the user enters a code, but it's not valid, display an error
             let couponError = PKPaymentRequest.paymentCouponCodeInvalidError(localizedDescription: "Coupon code is not valid.")
             completion(PKPaymentRequestCouponCodeUpdate(errors: [couponError], paymentSummaryItems: paymentSummaryItems, shippingMethods: shippingMethodCalculator()))
             return
         }
     }
-    
 }

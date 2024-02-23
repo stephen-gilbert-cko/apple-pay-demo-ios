@@ -1,10 +1,7 @@
-//
-//  SellViewController.swift
-//  ApplePayDemo
-//
-//  Created by Stephen Gilbert on 16/02/2024.
-//  Copyright © 2024 Apple. All rights reserved.
-//
+/*
+ Abstract:
+ "Sell" tab view controller
+ */
 
 import UIKit
 import PassKit
@@ -12,16 +9,16 @@ import MapKit
 
 @available(iOS 17.0, *)
 class SellViewController: UIViewController {
-
+    
     @IBOutlet weak var applePayView: UIView!
     @IBOutlet weak var mapView: MKMapView!
     let payoutHandler = PayoutHandler()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let result = PayoutHandler.applePayStatus()
         var button: UIButton?
-
+        
         if result.supportsDisbursements {
             button = PKPaymentButton(paymentButtonType: .continue, paymentButtonStyle: .black)
             button?.addTarget(self, action: #selector(SellViewController.payPressed), for: .touchUpInside)
@@ -29,7 +26,7 @@ class SellViewController: UIViewController {
             button = PKPaymentButton(paymentButtonType: .setUp, paymentButtonStyle: .black)
             button?.addTarget(self, action: #selector(SellViewController.setupPressed), for: .touchUpInside)
         }
-
+        
         if let applePayButton = button {
             let constraints = [
                 applePayButton.centerXAnchor.constraint(equalTo: applePayView.centerXAnchor),
@@ -39,11 +36,11 @@ class SellViewController: UIViewController {
             applePayView.addSubview(applePayButton)
             NSLayoutConstraint.activate(constraints)
         }
-
+        
         let region = MKCoordinateRegion(center: CLLocationCoordinate2DMake(51.530026, -0.092586), latitudinalMeters: 300, longitudinalMeters: 300)
         mapView.setRegion(region, animated: true)
     }
-
+    
     @objc func payPressed(sender: AnyObject) {
         payoutHandler.startPayment() { (success) in
             if success {
@@ -51,10 +48,9 @@ class SellViewController: UIViewController {
             }
         }
     }
-
+    
     @objc func setupPressed(sender: AnyObject) {
         let passLibrary = PKPassLibrary()
         passLibrary.openPaymentSetup()
     }
 }
-
