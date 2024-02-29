@@ -170,7 +170,7 @@ extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
             if !payment.token.paymentData.isEmpty {
                 let tokenData = payment.token.paymentData
                 let tokenString = String(data: tokenData, encoding: String.Encoding.utf8)!
-                print("Apple Pay token data: \(tokenString)")
+                print("Apple Pay token data: \(tokenString)\n")
                 
                 // Send data to Checkout.com to generate temporary token
                 let decoder = JSONDecoder()

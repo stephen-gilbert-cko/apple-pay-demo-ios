@@ -16,6 +16,8 @@ class PayoutHandler: NSObject {
     var paymentStatus = PKPaymentAuthorizationStatus.failure
     var completionHandler: PayoutCompletionHandler!
     
+    let paymentAmount:NSDecimalNumber = 9.99;
+    
     struct ApplePayTokenData: Codable {
         let version: String
         let data: String
@@ -46,8 +48,8 @@ class PayoutHandler: NSObject {
         
         completionHandler = completion
         
-        let fundsWithdrawn = PKPaymentSummaryItem(label: "CKO Festival", amount: 9.99)
-        let fundsSent = PKDisbursementSummaryItem(label: "Amount received", amount: 9.99)
+        let fundsWithdrawn = PKPaymentSummaryItem(label: "CKO Festival", amount: paymentAmount)
+        let fundsSent = PKDisbursementSummaryItem(label: "Amount received", amount: paymentAmount)
         payoutSummaryItems = [fundsWithdrawn, fundsSent]
         
         // Build a disbursement request
@@ -128,7 +130,7 @@ class PayoutHandler: NSObject {
     
     // Send temporary token (tok_...) to server to retrieve card metadata: https://www.checkout.com/docs/payments/manage-payments/retrieve-card-metadata#Using_a_token
     // Return eligibility for particular payout scenario
-    func getPayoutEligibility(ckoToken: String, completion: @escaping (Result<String, Error>) -> Void) {
+    func getPayoutEligibility(ckoToken: String, payoutScenario: String, completion: @escaping (Result<String, Error>) -> Void) {
         guard let url = URL(string: Configuration.Server.metadataApiUrl) else {
             completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
             return
@@ -154,11 +156,70 @@ class PayoutHandler: NSObject {
                    let bodyData = bodyString.data(using: .utf8),
                    let body = try JSONSerialization.jsonObject(with: bodyData, options: .fragmentsAllowed) as? [String: Any],
                    let cardPayouts = body["card_payouts"] as? [String: Any],
-                   let domesticMoneyTransfer = cardPayouts["domestic_money_transfer"] as? String {
-                    completion(.success(domesticMoneyTransfer))
+                   let eligibility = cardPayouts[payoutScenario] as? String {
+                    completion(.success(eligibility))
                 } else {
                     completion(.failure(NSError(domain: "Error processing response", code: 0, userInfo: nil)))
                 }
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    // Call server to retrieve balance information for a given currency account: https://www.checkout.com/docs/payments/request-payouts/card-payouts/request-an-apple-pay-card-payout#Check_currency_account_balance
+    // Return available balance
+    func getAvailableBalance(currencyAccountId: String, completion: @escaping (Result<String, Error>) -> Void) {
+        guard let url = URL(string: Configuration.Server.balancesApiUrl) else {
+            completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            guard let data = data, error == nil else {
+                let errorMessage = error?.localizedDescription ?? "Unknown error"
+                completion(.failure(NSError(domain: "Data Task Failed", code: 0, userInfo: ["error": errorMessage])))
+                return
+            }
+            
+            do {
+                guard let jsonResponse = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any] else {
+                    completion(.failure(NSError(domain: "Error converting JSON data to dictionary", code: 0, userInfo: nil)))
+                    return
+                }
+                
+                guard let bodyString = jsonResponse["body"] as? String,
+                      let bodyData = bodyString.data(using: .utf8),
+                      let body = try JSONSerialization.jsonObject(with: bodyData, options: .fragmentsAllowed) as? [String: Any],
+                      let dictionary = body["data"] as? [[String: Any]] else {
+                    completion(.failure(NSError(domain: "Error processing response", code: 0, userInfo: nil)))
+                    return
+                }
+                
+                // Loop through the data array to find the matching currency_account_id
+                for accountData in dictionary {
+                    guard let accountId = accountData["currency_account_id"] as? String else {
+                        completion(.failure(NSError(domain: "Missing or invalid 'currency_account_id' in response", code: 0, userInfo: nil)))
+                        continue
+                    }
+                    
+                    if accountId == currencyAccountId {
+                        if let balances = accountData["balances"] as? [String: Any],
+                           let availableBalance = balances["available"] as? Int {
+                            completion(.success("\(availableBalance)"))
+                            return
+                        } else {
+                            completion(.failure(NSError(domain: "Missing or invalid 'available' balance for currency account", code: 0, userInfo: nil)))
+                        }
+                    }
+                }
+                // If the loop completes without finding a match
+                completion(.failure(NSError(domain: "No account found with currency_account_id: \(currencyAccountId)", code: 0, userInfo: nil)))
+                
             } catch {
                 completion(.failure(error))
             }
@@ -173,8 +234,8 @@ extension PayoutHandler: PKPaymentAuthorizationControllerDelegate {
     func paymentAuthorizationController(_ controller: PKPaymentAuthorizationController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         
         // TODO: Perform basic validation on the provided contact information
-        let errors = [Error]()
-        let status = PKPaymentAuthorizationStatus.success
+        var errors = [Error]()
+        var status = PKPaymentAuthorizationStatus.success
         
         // Retrieve encrypted Apple Pay token data
         if !payment.token.paymentData.isEmpty {
@@ -182,17 +243,50 @@ extension PayoutHandler: PKPaymentAuthorizationControllerDelegate {
             let tokenString = String(data: tokenData, encoding: String.Encoding.utf8)!
             print("Apple Pay token data: \(tokenString)\n")
             
-            // Send data to Checkout.com to generate temporary token and get payout eligibility
+            // Send data to Checkout.com to generate temporary token, check payout eligibility and funds availability
             let decoder = JSONDecoder()
             let decodedTokenData = try! decoder.decode(ApplePayTokenData.self, from: tokenData)
             generateCkoToken(applePayTokenData: decodedTokenData) { result in
                 switch result {
                 case .success(let token):
-                    print("Token: \(token)")
-                    self.getPayoutEligibility(ckoToken: token) { result in
+                    print("Token: \(token)\n")
+                    
+                    self.getPayoutEligibility(ckoToken: token, payoutScenario: "domestic_money_transfer") { result in
                         switch result {
                         case .success(let eligibility):
-                            print("Payout eligibility: \(eligibility)")
+                            print("Payout eligibility: \(eligibility)\n")
+                            
+                            // Check available balance if card is eligible or eligibilty is unknown
+                            let eligiblePossibilities = ["fast_funds", "standard", "unknown"]
+                            if (eligiblePossibilities.contains(eligibility)) {
+                                // TODO: Check currency account balance
+                                self.getAvailableBalance(currencyAccountId: "ca_lxes35xrswwu3a52yl74v5xvbe") {  result in
+                                    switch result {
+                                    case .success(let availableBalance):
+                                        print("Available balance: \(availableBalance)\n")
+                                        
+                                        // If available balance is > payment amount then send temporary token (tok_...) to server to request payout
+                                        let availableBalanceDecimal = NSDecimalNumber(string: availableBalance)
+                                        if availableBalanceDecimal.compare(self.paymentAmount) == .orderedDescending || availableBalanceDecimal.compare(self.paymentAmount) == .orderedSame {
+                                            print("Send Payout!")
+                                            // TODO: Request payout
+                                            // TODO: Once processed, return an appropriate status in the completion handler (success, failure etc.)
+                                        } else {
+                                            print("Insufficient balance")
+                                        }
+                                        
+                                    case .failure(let error):
+                                        print("Error: \(error)")
+                                    }
+                                }
+                                
+                            } else {
+                                // Present error if the card is ineligible
+                                let eligibilityError = PKDisbursementRequest.disbursementCardUnsupportedError()
+                                errors.append(eligibilityError)
+                                status = .failure
+                            }
+                            
                         case .failure(let error):
                             print("Error: \(error)")
                         }
@@ -201,8 +295,6 @@ extension PayoutHandler: PKPaymentAuthorizationControllerDelegate {
                     print("Error: \(error)")
                 }
             }
-            // TODO: Send temporary token (tok_...) to server to request payout
-            // Once processed, return an appropriate status in the completion handler (success, failure etc.)
         }
         self.paymentStatus = status
         completion(PKPaymentAuthorizationResult(status: status, errors: errors))
