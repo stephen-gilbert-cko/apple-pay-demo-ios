@@ -233,9 +233,28 @@ extension PayoutHandler: PKPaymentAuthorizationControllerDelegate {
     
     func paymentAuthorizationController(_ controller: PKPaymentAuthorizationController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         
-        // TODO: Perform basic validation on the provided contact information
         var errors = [Error]()
         var status = PKPaymentAuthorizationStatus.success
+        
+        // Perform basic validation on the provided first/last name
+        var contactName = payment.billingContact?.name?.givenName
+        if let familyName = payment.billingContact?.name?.familyName {
+            contactName = "\(contactName ?? "") \(familyName)"
+        }
+        let isValidName: Bool
+        if let contactName = contactName {
+            isValidName = contactName.range(of: #"[a-zA-Z '-]+"#, options: .regularExpression) == contactName.startIndex..<contactName.endIndex
+        } else {
+            isValidName = false
+        }
+        
+        print("Recipient name valid?: \(isValidName)\n")
+        if !isValidName {
+           // Present error if the first/last name are invalid
+            let eligibilityError = PKDisbursementRequest.disbursementContactInvalidError(withContactField: .name, localizedDescription: "Recipient name not valid")
+           errors.append(eligibilityError)
+           status = .failure
+       }
         
         // Retrieve encrypted Apple Pay token data
         if !payment.token.paymentData.isEmpty {
@@ -243,7 +262,7 @@ extension PayoutHandler: PKPaymentAuthorizationControllerDelegate {
             let tokenString = String(data: tokenData, encoding: String.Encoding.utf8)!
             print("Apple Pay token data: \(tokenString)\n")
             
-            // Send data to Checkout.com to generate temporary token, check payout eligibility and funds availability
+            // Send data to Checkout.com to generate temporary token (tok_...), check payout eligibility and funds availability
             let decoder = JSONDecoder()
             let decodedTokenData = try! decoder.decode(ApplePayTokenData.self, from: tokenData)
             generateCkoToken(applePayTokenData: decodedTokenData) { result in
@@ -259,24 +278,26 @@ extension PayoutHandler: PKPaymentAuthorizationControllerDelegate {
                             // Check available balance if card is eligible or eligibilty is unknown
                             let eligiblePossibilities = ["fast_funds", "standard", "unknown"]
                             if (eligiblePossibilities.contains(eligibility)) {
-                                // TODO: Check currency account balance
                                 self.getAvailableBalance(currencyAccountId: "ca_lxes35xrswwu3a52yl74v5xvbe") {  result in
                                     switch result {
                                     case .success(let availableBalance):
                                         print("Available balance: \(availableBalance)\n")
                                         
-                                        // If available balance is > payment amount then send temporary token (tok_...) to server to request payout
+                                        // If available balance is > payment amount then make a payout request
                                         let availableBalanceDecimal = NSDecimalNumber(string: availableBalance)
                                         if availableBalanceDecimal.compare(self.paymentAmount) == .orderedDescending || availableBalanceDecimal.compare(self.paymentAmount) == .orderedSame {
                                             print("Send Payout!")
-                                            // TODO: Request payout
+                                            // TODO: Send temporary token to server to request payout
                                             // TODO: Once processed, return an appropriate status in the completion handler (success, failure etc.)
+                                            status = .success
                                         } else {
                                             print("Insufficient balance")
+                                            status = .failure
                                         }
                                         
                                     case .failure(let error):
                                         print("Error: \(error)")
+                                        status = .failure
                                     }
                                 }
                                 
@@ -289,10 +310,12 @@ extension PayoutHandler: PKPaymentAuthorizationControllerDelegate {
                             
                         case .failure(let error):
                             print("Error: \(error)")
+                            status = .failure
                         }
                     }
                 case .failure(let error):
                     print("Error: \(error)")
+                    status = .failure
                 }
             }
         }

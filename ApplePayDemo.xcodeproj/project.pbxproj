@@ -49,7 +49,6 @@
 		2974A0F22B802F64006BCE17 /* PayoutHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayoutHandler.swift; sourceTree = "<group>"; };
 		2974A0F32B802F64006BCE17 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		2974A0F42B802F64006BCE17 /* PaymentHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentHandler.swift; sourceTree = "<group>"; };
-		AA282EB38A40761B4D82B1EE /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		D8342A55246F1C1F00CC19D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8342A57246F1C1F00CC19D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D8342A59246F1C1F00CC19D7 /* BuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyViewController.swift; sourceTree = "<group>"; };
@@ -72,21 +71,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		261CCF8B30556A52FFB0472B /* Configuration */ = {
-			isa = PBXGroup;
-			children = (
-				AA282EB38A40761B4D82B1EE /* SampleCode.xcconfig */,
-			);
-			name = Configuration;
-			sourceTree = "<group>";
-		};
 		D8342A49246F1C1F00CC19D7 = {
 			isa = PBXGroup;
 			children = (
 				D8342ABA2473287B00CC19D7 /* README.md */,
 				D8342A76246F3F4C00CC19D7 /* Shared */,
 				D8342A54246F1C1F00CC19D7 /* ApplePayDemo */,
-				261CCF8B30556A52FFB0472B /* Configuration */,
 				2932C0642B7E7AEA00B597ED /* ApplePayDemo.app */,
 			);
 			sourceTree = "<group>";
@@ -217,7 +207,6 @@
 /* Begin XCBuildConfiguration section */
 		D8342A64246F1C2200CC19D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA282EB38A40761B4D82B1EE /* SampleCode.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -281,7 +270,6 @@
 		};
 		D8342A65246F1C2200CC19D7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA282EB38A40761B4D82B1EE /* SampleCode.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -339,7 +327,6 @@
 		};
 		D8342A67246F1C2200CC19D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA282EB38A40761B4D82B1EE /* SampleCode.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -365,7 +352,6 @@
 		};
 		D8342A68246F1C2200CC19D7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA282EB38A40761B4D82B1EE /* SampleCode.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
