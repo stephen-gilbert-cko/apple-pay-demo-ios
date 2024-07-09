@@ -7,15 +7,16 @@ import UIKit
 import PassKit
 import MapKit
 
+@available(iOS 16.0, *)
 class BuyViewController: UIViewController {
     
     @IBOutlet weak var applePayView: UIView!
     @IBOutlet weak var mapView: MKMapView!
-    let paymentHandler = PaymentHandler()
+    let paymentHandler = RecurringPaymentHandler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let result = PaymentHandler.applePayStatus()
+        let result = RecurringPaymentHandler.applePayStatus()
         var button: UIButton?
         
         if result.canMakePayments {
