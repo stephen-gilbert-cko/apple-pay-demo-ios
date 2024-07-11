@@ -262,6 +262,10 @@ extension PayoutHandler: PKPaymentAuthorizationControllerDelegate {
             let tokenString = String(data: tokenData, encoding: String.Encoding.utf8)!
             print("Apple Pay token data: \(tokenString)\n")
             
+            // Customer-facing display name for card
+            let displayName = payment.token.paymentMethod.displayName ?? "No display name"
+            print("Card display name: \(displayName)\n")
+            
             // Send data to Checkout.com to generate temporary token (tok_...), check payout eligibility and funds availability
             let decoder = JSONDecoder()
             let decodedTokenData = try! decoder.decode(ApplePayTokenData.self, from: tokenData)

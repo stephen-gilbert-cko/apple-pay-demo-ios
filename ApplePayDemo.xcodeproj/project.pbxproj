@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		292C1A702C3D7E4B00A494B7 /* RecurringPaymentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292C1A6F2C3D7E4B00A494B7 /* RecurringPaymentHandler.swift */; };
+		292C1A722C3FFCE700A494B7 /* SubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292C1A712C3FFCE700A494B7 /* SubscribeViewController.swift */; };
 		2974A0DD2B7FA76F006BCE17 /* SellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974A0DC2B7FA76F006BCE17 /* SellViewController.swift */; };
 		2974A0F52B802F64006BCE17 /* PayoutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974A0F22B802F64006BCE17 /* PayoutHandler.swift */; };
 		2974A0F62B802F64006BCE17 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974A0F32B802F64006BCE17 /* Configuration.swift */; };
@@ -44,6 +46,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		292C1A6F2C3D7E4B00A494B7 /* RecurringPaymentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecurringPaymentHandler.swift; sourceTree = "<group>"; };
+		292C1A712C3FFCE700A494B7 /* SubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
 		2932C0642B7E7AEA00B597ED /* ApplePayDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApplePayDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2974A0DC2B7FA76F006BCE17 /* SellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellViewController.swift; sourceTree = "<group>"; };
 		2974A0F22B802F64006BCE17 /* PayoutHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayoutHandler.swift; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 				D8342A60246F1C2200CC19D7 /* LaunchScreen.storyboard */,
 				D8342A63246F1C2200CC19D7 /* Info.plist */,
 				2974A0DC2B7FA76F006BCE17 /* SellViewController.swift */,
+				292C1A712C3FFCE700A494B7 /* SubscribeViewController.swift */,
 			);
 			path = ApplePayDemo;
 			sourceTree = "<group>";
@@ -103,6 +108,7 @@
 				2974A0F32B802F64006BCE17 /* Configuration.swift */,
 				2974A0F42B802F64006BCE17 /* PaymentHandler.swift */,
 				2974A0F22B802F64006BCE17 /* PayoutHandler.swift */,
+				292C1A6F2C3D7E4B00A494B7 /* RecurringPaymentHandler.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -181,11 +187,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				292C1A722C3FFCE700A494B7 /* SubscribeViewController.swift in Sources */,
 				2974A0F62B802F64006BCE17 /* Configuration.swift in Sources */,
 				D8342A5A246F1C1F00CC19D7 /* BuyViewController.swift in Sources */,
 				2974A0DD2B7FA76F006BCE17 /* SellViewController.swift in Sources */,
 				2974A0F72B802F64006BCE17 /* PaymentHandler.swift in Sources */,
 				2974A0F52B802F64006BCE17 /* PayoutHandler.swift in Sources */,
+				292C1A702C3D7E4B00A494B7 /* RecurringPaymentHandler.swift in Sources */,
 				D8342A56246F1C1F00CC19D7 /* AppDelegate.swift in Sources */,
 				D8342A58246F1C1F00CC19D7 /* SceneDelegate.swift in Sources */,
 			);
