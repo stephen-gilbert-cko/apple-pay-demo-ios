@@ -158,7 +158,6 @@ extension RecurringPaymentHandler: PKPaymentAuthorizationControllerDelegate {
     
     func paymentAuthorizationController(_ controller: PKPaymentAuthorizationController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         
-        // Perform basic validation on the provided contact information
         var errors = [Error]()
         var status = PKPaymentAuthorizationStatus.success
         

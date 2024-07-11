@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MIz-Jw-B1n">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MIz-Jw-B1n">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -59,13 +59,13 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="BQq-b7-BB6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="7VY-17-GB6"/>
                             <constraint firstItem="BQq-b7-BB6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="GTd-wI-F1X"/>
                             <constraint firstItem="6V3-TK-n1C" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Lri-Pc-v17"/>
-                            <constraint firstItem="BQq-b7-BB6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="cU6-7o-sri"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6V3-TK-n1C" secondAttribute="bottom" id="ToH-js-eVR"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="BQq-b7-BB6" secondAttribute="bottom" id="Yx2-0E-5A9"/>
                             <constraint firstAttribute="trailing" secondItem="6V3-TK-n1C" secondAttribute="trailing" id="dgo-eP-i0L"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="BQq-b7-BB6" secondAttribute="bottom" id="hvf-7j-fbw"/>
                             <constraint firstAttribute="trailing" secondItem="BQq-b7-BB6" secondAttribute="trailing" id="ush-gZ-alv"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6V3-TK-n1C" secondAttribute="bottom" id="xVe-4D-wLf"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Buy" image="buy-icon" selectedImage="buy-icon-filled" id="xsb-CJ-yZM"/>
@@ -80,7 +80,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1238" y="-732"/>
+            <point key="canvasLocation" x="-539" y="440"/>
         </scene>
         <!--Purchase Confirmation-->
         <scene sceneID="YzD-28-xaK">
@@ -118,7 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="86F-yY-QKk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2072" y="-733"/>
+            <point key="canvasLocation" x="-539" y="1150"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="D5e-De-unq">
@@ -150,11 +150,31 @@
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="ZZ3-sP-y9T"/>
                         <segue destination="0sB-Rd-0xR" kind="relationship" relationship="viewControllers" id="BXl-Bu-o3J"/>
+                        <segue destination="aLD-wP-hI7" kind="relationship" relationship="viewControllers" id="hmu-gp-D8J"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="glC-9l-Udy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="328.98550724637681" y="-362.27678571428572"/>
+        </scene>
+        <!--VIP-->
+        <scene sceneID="Cvt-Hv-jHL">
+            <objects>
+                <viewController title="VIP" id="aLD-wP-hI7" customClass="SubscribeViewController" customModule="ApplePayDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vwt-xs-3vv"/>
+                        <viewControllerLayoutGuide type="bottom" id="TxQ-du-YFr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QRC-Xb-cAm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="VIP" image="vip-icon" selectedImage="vip-icon-filled" id="eXK-c0-0dQ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QXj-L4-vGE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1183" y="440"/>
         </scene>
         <!--Sell-->
         <scene sceneID="IZ1-zH-tDV">
@@ -228,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V38-pO-d98" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1238" y="-38"/>
+            <point key="canvasLocation" x="328" y="440"/>
         </scene>
         <!--Sale Confirmation-->
         <scene sceneID="U3z-1d-NCW">
@@ -266,7 +286,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6gh-vH-fwe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2071" y="-38"/>
+            <point key="canvasLocation" x="328" y="1150"/>
         </scene>
     </scenes>
     <resources>
@@ -274,6 +294,8 @@
         <image name="buy-icon-filled" width="25" height="25"/>
         <image name="sell-icon" width="25" height="25"/>
         <image name="sell-icon-filled" width="25" height="25"/>
+        <image name="vip-icon" width="25" height="25"/>
+        <image name="vip-icon-filled" width="25" height="25"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
