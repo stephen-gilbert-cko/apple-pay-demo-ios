@@ -44,8 +44,8 @@ You will need:
 
 7. Go to the **Signing & Capabilities** tab and add (+) the `Apple Pay` capability. Ensure you have `Automatically manage signing` enabled and your **Team** and **Bundle Identifier** match what's in your developer account. Under **Apple Pay** you should now be able to select your Merchant ID.
 
-    > [!TIP]
-    > Click refresh if Merchant IDs are not appearing.
+> [!TIP]
+> Click refresh if Merchant IDs are not appearing.
 
 8. Open [/Shared/Configuration.swift](./Shared/Configuration.swift) and update the following values:
 - **Merchant** `identifier` = your Apple Merchant ID
