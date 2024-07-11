@@ -1,6 +1,6 @@
 /*
  Abstract:
- "Buy" tab view controller
+ "VIP" tab view controller
  */
 
 import UIKit
@@ -8,23 +8,23 @@ import PassKit
 import MapKit
 
 @available(iOS 16.0, *)
-class BuyViewController: UIViewController {
+class SubscribeViewController: UIViewController {
     
     @IBOutlet weak var applePayView: UIView!
     @IBOutlet weak var mapView: MKMapView!
-    let paymentHandler = PaymentHandler()
+    let paymentHandler = RecurringPaymentHandler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let result = PaymentHandler.applePayStatus()
+        let result = RecurringPaymentHandler.applePayStatus()
         var button: UIButton?
         
         if result.canMakePayments {
-            button = PKPaymentButton(paymentButtonType: .book, paymentButtonStyle: .black)
-            button?.addTarget(self, action: #selector(BuyViewController.payPressed), for: .touchUpInside)
+            button = PKPaymentButton(paymentButtonType: .subscribe, paymentButtonStyle: .black)
+            button?.addTarget(self, action: #selector(SubscribeViewController.payPressed), for: .touchUpInside)
         } else if result.canSetupCards {
             button = PKPaymentButton(paymentButtonType: .setUp, paymentButtonStyle: .black)
-            button?.addTarget(self, action: #selector(BuyViewController.setupPressed), for: .touchUpInside)
+            button?.addTarget(self, action: #selector(SubscribeViewController.setupPressed), for: .touchUpInside)
         }
         
         if let applePayButton = button {
