@@ -63,26 +63,26 @@ You will need:
 
 2. Once created, go to your new function and scroll down. Under the **Code** tab you should see an `Upload from ▼` option. Open the dropdown and select `.zip file`. Upload this file: [getCardMetadata-lambda.zip](./resources/lambda-functions/getCardMetadata-lambda.zip).
 
-3. Go to the **Configuration** tab then select **Environment variables** and enter the following:
+3. Go to the **Configuration** tab then select `Environment variables` and enter the following:
    - `CKO_API_KEY` = your Checkout.com secret API key (`sk_...`)
    - `CKO_ENV` = the target Checkout.com environment (e.g. `api.sandbox.checkout.com`)
 
 4. [Create a new REST API](https://us-east-1.console.aws.amazon.com/apigateway/main/create-rest).
 
-5. Once created, select `Create method` and create a **POST** method to your Lambda function.
+5. Once created, select `Create method` and add a **POST** method to your Lambda function.
 
 7. Select `Deploy API` and create a new stage (e.g. `dev`). Make a note of the resulting **Invoke URL**.
 
 8. Create another Lambda function, this time uploading: [getCurrencyAccountBalances-lambda.zip](./resources/lambda-functions/getCurrencyAccountBalances-lambda.zip).
 
-9. Go to the **Configuration** tab then select **Environment variables** and enter the following:
+9. Go to the **Configuration** tab then select `Environment variables` and enter the following:
    - `CKO_API_KEY` = your Checkout.com secret API key (`sk_...`)
    - `CKO_ENV` = the target Checkout.com environment (e.g. `balances.sandbox.checkout.com`)
    - `CKO_ENTITY_ID` = the ID of the Checkout.com entity you want to check balances under (`ent_...`)
 
 10. [Create a new REST API](https://us-east-1.console.aws.amazon.com/apigateway/main/create-rest).
 
-11. Once created, select `Create method` and create a **GET** method to your Lambda function.
+11. Once created, select `Create method` and add a **GET** method to your Lambda function.
 
 12. Select `Deploy API` and create a new stage (e.g. `dev`). Make a note of the resulting **Invoke URL**.
 
