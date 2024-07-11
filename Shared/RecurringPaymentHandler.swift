@@ -1,10 +1,7 @@
-//
-//  RecurringPaymentHandler.swift
-//  ApplePayDemo
-//
-//  Created by Stephen Gilbert on 09/07/2024.
-//  Copyright © 2024 Apple. All rights reserved.
-//
+/*
+ Abstract:
+ A shared class for handling payments across an app and its related extensions
+ */
 
 import UIKit
 import PassKit
@@ -178,12 +175,14 @@ extension RecurringPaymentHandler: PKPaymentAuthorizationControllerDelegate {
                 switch result {
                 case .success(let token):
                     print("Token: \(token)")
+                    // TODO: Send temporary token (tok_...) to server to request payment
+                    // Once processed, return an appropriate status in the completion handler (success, failure etc.)
+                    status = .success
                 case .failure(let error):
                     print("Error: \(error)")
+                    status = .failure
                 }
             }
-            // TODO: Send temporary token (tok_...) to server to request payment
-            // Once processed, return an appropriate status in the completion handler (success, failure etc.)
         }
         
         self.paymentStatus = status

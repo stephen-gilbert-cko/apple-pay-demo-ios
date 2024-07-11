@@ -250,11 +250,11 @@ extension PayoutHandler: PKPaymentAuthorizationControllerDelegate {
         
         print("Recipient name valid?: \(isValidName)\n")
         if !isValidName {
-           // Present error if the first/last name are invalid
+            // Present error if the first/last name are invalid
             let eligibilityError = PKDisbursementRequest.disbursementContactInvalidError(withContactField: .name, localizedDescription: "Recipient name not valid")
-           errors.append(eligibilityError)
-           status = .failure
-       }
+            errors.append(eligibilityError)
+            status = .failure
+        }
         
         // Retrieve encrypted Apple Pay token data
         if !payment.token.paymentData.isEmpty {
@@ -282,7 +282,7 @@ extension PayoutHandler: PKPaymentAuthorizationControllerDelegate {
                             // Check available balance if card is eligible or eligibilty is unknown
                             let eligiblePossibilities = ["fast_funds", "standard", "unknown"]
                             if (eligiblePossibilities.contains(eligibility)) {
-                                self.getAvailableBalance(currencyAccountId: "ca_lxes35xrswwu3a52yl74v5xvbe") {  result in
+                                self.getAvailableBalance(currencyAccountId: Configuration.CheckoutDotCom.currencyAccountId) {  result in
                                     switch result {
                                     case .success(let availableBalance):
                                         print("Available balance: \(availableBalance)\n")
@@ -292,7 +292,7 @@ extension PayoutHandler: PKPaymentAuthorizationControllerDelegate {
                                         if availableBalanceDecimal.compare(self.paymentAmount) == .orderedDescending || availableBalanceDecimal.compare(self.paymentAmount) == .orderedSame {
                                             print("Send Payout!")
                                             // TODO: Send temporary token to server to request payout
-                                            // TODO: Once processed, return an appropriate status in the completion handler (success, failure etc.)
+                                            // Once processed, return an appropriate status in the completion handler (success, failure etc.)
                                             status = .success
                                         } else {
                                             print("Insufficient balance")

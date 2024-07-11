@@ -16,19 +16,16 @@ public class Configuration {
     }
     
     struct Merchant {
-//        static let identifier = "<YOUR_APPLE_MERCHANT_ID>"
-        static let identifier = "merchant.checkout.applepaydemo"
+        static let identifier = "<YOUR_APPLE_MERCHANT_ID>" // e.g. merchant.checkout.applepaydemo
     }
     
     struct CheckoutDotCom {
-//        static let publicKey = "<YOUR_CKO_PUBLIC_API_KEY>"
-        static let publicKey = "pk_sbox_svm7ctgfxkhbfthi4blfb765nyq"
+        static let publicKey = "<YOUR_CKO_PUBLIC_API_KEY>" // pk_...
+        static let currencyAccountId = "<YOUR_CKO_CURRENCY_ACCOUNT_ID>" // ca_...
     }
     
     struct Server {
-//        static let metadataApiUrl = "<YOUR_SERVER_API_URL>"
-//        static let balancesApiUrl = "<YOUR_SERVER_API_URL>"
-        static let metadataApiUrl = "https://koeglfxc96.execute-api.us-east-1.amazonaws.com/dev"
-        static let balancesApiUrl = "https://xl77zzdgzi.execute-api.us-east-1.amazonaws.com/dev"
+        static let metadataApiUrl = "<YOUR_SERVER_API_URL>"
+        static let balancesApiUrl = "<YOUR_SERVER_API_URL>"
     }
 }

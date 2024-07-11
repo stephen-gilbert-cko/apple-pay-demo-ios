@@ -183,12 +183,14 @@ extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
                     switch result {
                     case .success(let token):
                         print("Token: \(token)")
+                        // TODO: Send temporary token (tok_...) to server to request payment
+                        // Once processed, return an appropriate status in the completion handler (success, failure etc.)
+                        status = .success
                     case .failure(let error):
                         print("Error: \(error)")
+                        status = .failure
                     }
                 }
-                // TODO: Send temporary token (tok_...) to server to request payment
-                // Once processed, return an appropriate status in the completion handler (success, failure etc.)
             }
         }
         self.paymentStatus = status
