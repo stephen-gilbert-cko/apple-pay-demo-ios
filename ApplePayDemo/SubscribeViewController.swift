@@ -12,7 +12,7 @@ class SubscribeViewController: UIViewController {
     
     @IBOutlet weak var applePayView: UIView!
     @IBOutlet weak var mapView: MKMapView!
-    let paymentHandler = PaymentHandler()
+    let paymentHandler = RecurringPaymentHandler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,7 @@ class SubscribeViewController: UIViewController {
         var button: UIButton?
         
         if result.canMakePayments {
-            button = PKPaymentButton(paymentButtonType: .book, paymentButtonStyle: .black)
+            button = PKPaymentButton(paymentButtonType: .subscribe, paymentButtonStyle: .black)
             button?.addTarget(self, action: #selector(SubscribeViewController.payPressed), for: .touchUpInside)
         } else if result.canSetupCards {
             button = PKPaymentButton(paymentButtonType: .setUp, paymentButtonStyle: .black)
