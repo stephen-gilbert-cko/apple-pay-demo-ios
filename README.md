@@ -24,6 +24,7 @@ You will need:
 - A Mac
 - [Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12/)
 - Access to an [Apple Developer account](https://developer.apple.com/programs/enroll/)
+- Access to Checkout.com - get a test account [here](https://www.checkout.com/get-test-account)
 - **[Optional]** an iPhone or iPad
 
 ### Configure the project
@@ -54,7 +55,7 @@ You will need:
 > At this point you can run the app just fine ✅ [Skip to **build and run**](#build-and-run)<br>Only continue if you want to test with server-side API calls for card payout eligibility and balance checks.
 
 > [!CAUTION]
-> This guide is intended for demo purposes only. You should use [AWS Secrets Manager](https://us-east-1.console.aws.amazon.com/secretsmanager) to secure API secrets for any real deployment.
+> This guide is intended for demo purposes only. You should use [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) to secure API secrets for any real deployment.
 
 1. [Create a new Lambda function](https://console.aws.amazon.com/lambda/home#/functions) with default settings.
 
@@ -64,7 +65,7 @@ You will need:
    - `CKO_API_KEY` = your Checkout.com secret API key (`sk_...`)
    - `CKO_ENV` = the target Checkout.com environment (e.g. `api.sandbox.checkout.com`)
 
-4. [Create a new REST API](https://us-east-1.console.aws.amazon.com/apigateway/main/create-rest).
+4. [Create a new REST API](https://console.aws.amazon.com/apigateway/main/create-rest).
 
 5. Once created, select `Create method` and add a **POST** method to your Lambda function.
 
@@ -77,7 +78,7 @@ You will need:
    - `CKO_ENV` = the target Checkout.com environment (e.g. `balances.sandbox.checkout.com`)
    - `CKO_ENTITY_ID` = the ID of the Checkout.com entity you want to check balances under (`ent_...`)
 
-10. [Create a new REST API](https://us-east-1.console.aws.amazon.com/apigateway/main/create-rest).
+10. [Create a new REST API](https://console.aws.amazon.com/apigateway/main/create-rest).
 
 11. Once created, select `Create method` and add a **GET** method to your Lambda function.
 
