@@ -37,7 +37,7 @@ You will need:
 
 4. Click on the top-level `ApplePayDemo` directory, then under **TARGETS** click on `ApplePayDemo`.
 
-    ![alt text](./resources/guide-images/image-1.png)
+    ![Selecting the build target](./resources/guide-images/image-1.png)
 
 5. Under the **General** tab, change the `Bundle Identifier` to your Bundle ID from step 1.
 
@@ -94,7 +94,7 @@ You will need:
 
 In the title bar of Xcode, you should see the build scheme **iOS App**. Click the option to the right of this which reads **Any iOS Device** in my example below, and a dropdown should appear.
 
-![alt text](./resources/guide-images/image-2.png)
+![Toolbar items for build scheme and run destination](./resources/guide-images/image-2.png)
 
 You have 2 options to run the app:
 
@@ -151,3 +151,9 @@ Files specific to the demo app.
 >#### [`Info.plist`](./ApplePayDemo/Info.plist)
 >Configuration details for the app bundle; the file references values from the app's Build Settings.
 
+## 📸 Screenshots
+
+
+
+| ![The app's "Buy" screen, featuring a "Book with Apple Pay" button](./resources/guide-images/screen-1.png) | ![The Apple Pay payment sheet showing a funds transfer flow on the app's "Sell" screen](./resources/guide-images/screen-2.png) | ![The Apple Pay payment sheet showing a recurring payment flow on the app's "VIP" screen](./resources/guide-images/screen-3.png) |
+| --- | --- | --- |
