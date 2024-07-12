@@ -33,7 +33,7 @@ You will need:
 
 2. Complete steps 1-4 [here](https://www.checkout.com/docs/payments/add-payment-methods/apple-pay#Set_up_Apple_Pay) to create a Merchant ID and register a Payment Processing Certificate with Checkout.com.
 
-3. Open `ApplePayDemo.xcodeproj` in Xcode.
+3. Open [`ApplePayDemo.xcodeproj`](./ApplePayDemo.xcodeproj/) in Xcode.
 
 4. Click on the top-level `ApplePayDemo` directory, then under **TARGETS** click on `ApplePayDemo`.
 
@@ -45,7 +45,7 @@ You will need:
 
 7. Go to the **Signing & Capabilities** tab and add (+) the `Apple Pay` capability. Ensure you have `Automatically manage signing` enabled and your **Team** and **Bundle Identifier** match what's in your developer account. Under **Apple Pay** you should now be able to select your Merchant ID (try clicking refresh if not).
 
-8. Open [/Shared/Configuration.swift](./Shared/Configuration.swift) and update the following values:
+8. Open [`/Shared/Configuration.swift`](./Shared/Configuration.swift) and update the following values:
 - **Merchant** `identifier` = your Apple Merchant ID
 - **CheckoutDotCom** `publicKey` = your Checkout.com public API key (`pk_...`)
 
@@ -59,7 +59,7 @@ You will need:
 
 1. [Create a new Lambda function](https://console.aws.amazon.com/lambda/home#/functions) with default settings.
 
-2. Once created, go to your new function and scroll down. Under the **Code** tab you should see an `Upload from ▼` option. Open the dropdown and select `.zip file`. Upload this file: [getCardMetadata-lambda.zip](./resources/lambda-functions/getCardMetadata-lambda.zip).
+2. Once created, go to your new function and scroll down. Under the **Code** tab you should see an `Upload from ▼` option. Open the dropdown and select `.zip file`. Upload this file: [`getCardMetadata-lambda.zip`](./resources/lambda-functions/getCardMetadata-lambda.zip).
 
 3. Go to the **Configuration** tab then select `Environment variables` and enter the following:
    - `CKO_API_KEY` = your Checkout.com secret API key (`sk_...`)
@@ -71,7 +71,7 @@ You will need:
 
 7. Select `Deploy API` and create a new stage (e.g. `dev`). Make a note of the resulting **Invoke URL**.
 
-8. Create another Lambda function, this time uploading: [getCurrencyAccountBalances-lambda.zip](./resources/lambda-functions/getCurrencyAccountBalances-lambda.zip).
+8. Create another Lambda function, this time uploading: [`getCurrencyAccountBalances-lambda.zip`](./resources/lambda-functions/getCurrencyAccountBalances-lambda.zip).
 
 9. Go to the **Configuration** tab then select `Environment variables` and enter the following:
    - `CKO_API_KEY` = your Checkout.com secret API key (`sk_...`)
@@ -84,7 +84,7 @@ You will need:
 
 12. Select `Deploy API` and create a new stage (e.g. `dev`). Make a note of the resulting **Invoke URL**.
 
-13. In [/Shared/Configuration.swift](./Shared/Configuration.swift) update the following values:
+13. In [`/Shared/Configuration.swift`](./Shared/Configuration.swift) update the following values:
 - **CheckoutDotCom** `currencyAccountId` = the ID for the Checkout.com currency account you want to perform balance checks on (`ca_...`)
 - **Server**
   - `metadataApiUrl` = invoke URL from step 7
@@ -97,6 +97,9 @@ In the title bar of Xcode, you should see the build scheme **iOS App**. Click th
 ![Toolbar items for build scheme and run destination](./resources/guide-images/image-2.png)
 
 You have 2 options to run the app:
+
+> [!NOTE]
+> The [PKPaymentToken](https://developer.apple.com/documentation/passkit_apple_pay_and_wallet/pkpaymenttoken) is only generated when using a real device. If you use Simulator then you won't get back a token or any card metadata from payment.
 
 >#### 💻 Simulator
 >From the dropdown, select the desired device simulator under **iOS Simulators**.
