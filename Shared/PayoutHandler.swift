@@ -26,7 +26,8 @@ class PayoutHandler: NSObject {
     }
     
     struct ApplePayTokenDataHeader: Codable {
-        let ephemeralPublicKey: String
+        let ephemeralPublicKey: String?
+        let wrappedKey: String?
         let publicKeyHash: String
         let transactionId: String
     }
@@ -59,6 +60,7 @@ class PayoutHandler: NSObject {
         payoutRequest.region = .unitedKingdom
         payoutRequest.currency = Locale.Currency("GBP")
         payoutRequest.supportedNetworks = PayoutHandler.supportedNetworks
+        payoutRequest.merchantCapabilities = .threeDSecure
         
         // Require recipient details, and limit to payment cards issued in a particular region
         payoutRequest.requiredRecipientContactFields = [.name, .phoneNumber, .emailAddress]
@@ -226,6 +228,53 @@ class PayoutHandler: NSObject {
         }.resume()
     }
     
+    func printPaymentMethodJSON(payment: PKPayment) {
+        let paymentMethod = payment.token.paymentMethod
+
+        // Create a struct to represent the payment method details
+        struct PaymentMethodDetails: Codable {
+            let displayName: String?
+            let network: String?
+            let type: String
+        }
+
+        // Map PKPaymentMethod properties to the struct
+        let paymentMethodDetails = PaymentMethodDetails(
+            displayName: paymentMethod.displayName,
+            network: paymentMethod.network?.rawValue,
+            type: paymentMethod.type.payoutCardType
+        )
+
+        // Encode the struct to JSON
+        if let jsonData = try? JSONEncoder().encode(paymentMethodDetails) {
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                print("Payment method data: \(jsonString)\n")
+            }
+        } else {
+            print("Failed to encode payment method to JSON")
+        }
+    }
+}
+
+extension PKPaymentMethodType {
+    var payoutCardType: String {
+        switch self {
+        case .unknown:
+            return "unknown"
+        case .debit:
+            return "debit"
+        case .credit:
+            return "credit"
+        case .prepaid:
+            return "prepaid"
+        case .store:
+            return "store"
+        case .eMoney:
+            return "eMoney"
+        @unknown default:
+            return "unknown"
+        }
+    }
 }
 
 @available(iOS 17.0, *)
@@ -260,11 +309,13 @@ extension PayoutHandler: PKPaymentAuthorizationControllerDelegate {
         if !payment.token.paymentData.isEmpty {
             let tokenData = payment.token.paymentData
             let tokenString = String(data: tokenData, encoding: String.Encoding.utf8)!
-            print("Apple Pay token data: \(tokenString)\n")
+            print("\nApple Pay token data: \(tokenString)\n")
             
             // Customer-facing display name for card
             let displayName = payment.token.paymentMethod.displayName ?? "No display name"
             print("Card display name: \(displayName)\n")
+            
+            printPaymentMethodJSON(payment: payment)
             
             // Send data to Checkout.com to generate temporary token (tok_...), check payout eligibility and funds availability
             let decoder = JSONDecoder()
