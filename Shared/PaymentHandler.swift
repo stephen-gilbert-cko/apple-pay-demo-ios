@@ -85,6 +85,7 @@ class PaymentHandler: NSObject {
         paymentRequest.supportedNetworks = PaymentHandler.supportedNetworks
         paymentRequest.shippingType = .delivery
         paymentRequest.shippingMethods = shippingMethodCalculator()
+        paymentRequest.requiredBillingContactFields = [.postalAddress]
         paymentRequest.requiredShippingContactFields = [.name, .postalAddress]
         paymentRequest.supportsCouponCode = true
         
@@ -218,32 +219,44 @@ extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
             // Retrieve encrypted Apple Pay token data
             if !payment.token.paymentData.isEmpty {
                 let tokenData = payment.token.paymentData
-                let tokenString = String(data: tokenData, encoding: String.Encoding.utf8)!
-                print("\nApple Pay token data: \(tokenString)\n")
                 
-                // Customer-facing display name for card
-                let displayName = payment.token.paymentMethod.displayName ?? "No display name"
-                print("Card display name: \(displayName)\n")
+                // 1. Print the paymentData as a JSON string
+                if let tokenString = String(data: tokenData, encoding: .utf8) {
+                    print("\nApple Pay token data: \(tokenString)\n")
+                } else {
+                    print("Failed to convert paymentData to string")
+                }
                 
+                // 2. Print the paymentMethod details
                 printPaymentMethodJSON(payment: payment)
+                
+                // 3. Print the transactionIdentifier
+                let transactionIdentifier = payment.token.transactionIdentifier
+                print("Transaction Identifier: \(transactionIdentifier)\n")
                 
                 // Send data to Checkout.com to generate temporary token
                 let decoder = JSONDecoder()
-                let decodedTokenData = try! decoder.decode(ApplePayTokenData.self, from: tokenData)
-                generateCkoToken(applePayTokenData: decodedTokenData) { result in
-                    switch result {
-                    case .success(let token):
-                        print("Token: \(token)\n")
-                        // TODO: Send temporary token (tok_...) to server to request payment
-                        // Once processed, return an appropriate status in the completion handler (success, failure etc.)
-                        status = .success
-                    case .failure(let error):
-                        print("Error: \(error)")
-                        status = .failure
+                do {
+                    let decodedTokenData = try decoder.decode(ApplePayTokenData.self, from: tokenData)
+                    generateCkoToken(applePayTokenData: decodedTokenData) { result in
+                        switch result {
+                        case .success(let token):
+                            print("Token: \(token)\n")
+                            // TODO: Send temporary token (tok_...) to server to request payment
+                            // Once processed, return an appropriate status in the completion handler (success, failure etc.)
+                            status = .success
+                        case .failure(let error):
+                            print("Error: \(error)")
+                            status = .failure
+                        }
                     }
+                } catch {
+                    print("Error decoding tokenData: \(error)")
+                    status = .failure
                 }
             }
         }
+        
         self.paymentStatus = status
         completion(PKPaymentAuthorizationResult(status: status, errors: errors))
     }
