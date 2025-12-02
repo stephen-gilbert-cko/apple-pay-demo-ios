@@ -46,6 +46,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2906CA6C2EB1166800496FFB /* ApplePayDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = ApplePayDemo.xcodeproj; sourceTree = SOURCE_ROOT; };
 		292C1A6F2C3D7E4B00A494B7 /* RecurringPaymentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecurringPaymentHandler.swift; sourceTree = "<group>"; };
 		292C1A712C3FFCE700A494B7 /* SubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
 		2932C0642B7E7AEA00B597ED /* ApplePayDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApplePayDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,9 +76,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		299993392EB91D2F003EE692 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
 		D8342A49246F1C1F00CC19D7 = {
 			isa = PBXGroup;
 			children = (
+				2906CA6C2EB1166800496FFB /* ApplePayDemo.xcodeproj */,
 				D8342ABA2473287B00CC19D7 /* README.md */,
 				D8342A76246F3F4C00CC19D7 /* Shared */,
 				D8342A54246F1C1F00CC19D7 /* ApplePayDemo */,
@@ -161,6 +168,12 @@
 			mainGroup = D8342A49246F1C1F00CC19D7;
 			productRefGroup = D8342A49246F1C1F00CC19D7;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 299993392EB91D2F003EE692 /* Products */;
+					ProjectRef = 2906CA6C2EB1166800496FFB /* ApplePayDemo.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D8342A51246F1C1F00CC19D7 /* ApplePayDemo */,
